@@ -31,3 +31,12 @@
     transform: rotate(360deg);
   }
 }
+
+body, html{
+  background-color: black;
+  color: white
+}
+
+body{
+  margin: 10vh
+}
