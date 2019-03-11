@@ -29,7 +29,7 @@ class Prequel extends Component{
 
   }
   render(){
-    let divs = this.state.story.map(line=> <div>{line}</div>)
+    let divs = this.state.story.map((line,idx)=> <div key={idx}>{line}</div>)
     return (<div>
       {divs}
       </div>)

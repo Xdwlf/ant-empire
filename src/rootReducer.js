@@ -1,4 +1,4 @@
-import {SET_HOME} from './actionCreators'
+import {SET_HOME, UPDATE_FUEL, UPDATE_GAMESTATUS} from './actionCreators'
 
 const initialState = {
   workerAnts: 0,
@@ -8,7 +8,8 @@ const initialState = {
   },
   fuel: 100,
   home: null,
-  page: 'enter'
+  page: 'enter',
+  game: true
 }
 
 export default function rootReducer(state=initialState, action){
@@ -18,6 +19,16 @@ export default function rootReducer(state=initialState, action){
         ...state,
         home: action.home
       };
+    case UPDATE_FUEL:
+      return {
+        ...state,
+        fuel: action.fuel
+      }
+    case UPDATE_GAMESTATUS:
+      return{
+        ...state,
+        game: action.game
+      }
     default:
       return state;
   }

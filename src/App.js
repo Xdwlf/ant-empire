@@ -4,6 +4,7 @@ import './App.css';
 import Enter from './containers/Enter'
 import Prequel from './containers/Prequel'
 import Choice from './containers/Choice'
+import ColonyStatus from './components/ColonyStatus'
 import {Link, Route, Redirect} from 'react-router-dom'
 import {connect} from 'react-redux';
 
@@ -24,7 +25,10 @@ class App extends Component {
       return <Prequel changePage={this.changePage}/>
     }
     if(page==="choice"){
-      return "Choice"
+      return <Choice changePage={this.changePage}/>
+    }
+    if(page==='gameover'){
+      return 'GameOver'
     }
   }
   changePage(page){
@@ -33,8 +37,10 @@ class App extends Component {
   render() {
     //logic to figure out which page to render
     let page = this.decidePage(this.state.page)
+    let status = (this.state.page !== 'enter' && this.state.page !== 'prequel') ? <ColonyStatus /> : null
     return (
       <div className="App">
+        {status}
         {page}
       </div>
     );
