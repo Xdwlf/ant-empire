@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux'
+import generateHome from '../utils/GenerateHome'
 import {setHome, updateGameStatus} from '../actionCreators'
 
 class Choice extends Component{
@@ -10,6 +11,7 @@ class Choice extends Component{
     }
     this.generateStory= this.generateStory.bind(this)
     this.generateStory(this.props.fuel)
+    this.selectHome = this.selectHome.bind(this)
   }
   generateStory(fuel){
     let deductFuel = Math.floor(Math.random()*20)
@@ -23,9 +25,20 @@ class Choice extends Component{
 
     }
   }
+  selectHome(home){
+    this.props.setHome(home)
+    this.props.changePage('gameplay')
+  }
   render(){
+    let newHome = generateHome()
+    let newHomeDesc = newHome.description
     return(
-      <div>Choice</div>
+      <div>
+        <div>You have wandered upon a new area.</div>
+        <div>{newHomeDesc}</div>
+        <button onClick={()=> this.props.changePage('searching')}>Keep Looking</button>
+        <button onClick={()=>{this.selectHome(newHome)}}>Settle Down</button>
+      </div>
     )
   }
 }
