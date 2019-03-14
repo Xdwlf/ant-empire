@@ -1,4 +1,4 @@
-import {SET_HOME, UPDATE_FUEL, UPDATE_GAMESTATUS, UPDATE_CHOICE, UPDATE_ALL} from './actionCreators'
+import {SET_HOME, UPDATE_FUEL, UPDATE_GAMESTATUS, UPDATE_CHOICE, UPDATE_ALL, SET_EVENT} from './actionCreators'
 
 const initialState = {
   ants: {
@@ -8,8 +8,8 @@ const initialState = {
     worker: 0
   },
   store: {
-    food: 70,
-    water: 70
+    food: 200,
+    water: 200
   },
   fuel: 100,
   home: null,
@@ -44,6 +44,11 @@ export default function rootReducer(state=initialState, action){
     case UPDATE_ALL:
       return{
         ...action.state
+      }
+    case SET_EVENT:
+      return{
+        ...state,
+        event: action.event
       }
     default:
       return state;

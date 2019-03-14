@@ -1,4 +1,5 @@
 import {selectRandomfromArray, randomIntFromInterval} from './general'
+import {events} from './eventData'
 
 
 export const choiceDesc = {
@@ -7,21 +8,44 @@ export const choiceDesc = {
   defend: 'To protect your workers, you command your colony to move cautiously and to not range too far from home.'
 }
 
+export function describeChoice(choice){
+  return choiceDesc[choice]
+}
+
 export function generateEvent(reduxState){
   let {choice, home, store, ants, game, fuel} = reduxState
   let newState = {...reduxState}
-  let updatedAnts = calcCurrentAnts(reduxState)
+  let updatedAnts = calcCurrentAnts(reduxState, choice)
   let updatedStore = calcNewStore(reduxState)
   // calculate possiblity of events
-  let events = rollEvents(reduxState)
-
-  console.log(ants, updatedAnts)
-  return { event: null,
+  let event = rollEvents(reduxState)
+  return { event,
     state: {
       ...newState, ants: updatedAnts, store: updatedStore
     }
   }
   //return new object
+}
+
+export function calcEventEffects(event, reduxState){
+  if(!event) return null;
+  let {ants, store, home} = reduxState
+  let effect;
+  let value;
+  if(event.type=== 'ant'){
+    effect = Math.floor(ants[event.subtype]*event.effect) - ants[event.subtype]
+    value = (effect>=0)? '+': '-';
+
+  }
+  console.log('calculating')
+  console.log(event, effect)
+  return {
+    type: event.type,
+    subtype: event.subtype,
+    value,
+    number: effect
+
+  }
 }
 
 //calculate new ants object
@@ -34,13 +58,16 @@ export function generateEvent(reduxState){
     //log function
 
 export function calcNewStore(reduxState){
+  let baseRate = 5
   let {ants, store, home} = reduxState;
-  let waterRate = Math.floor(1/home.resources.water * ants.worker);
-  let foodRate = Math.floor(1/home.resources.water * ants.worker);
-  let deductFromStore = ants.eggs + (ants.larvae * 3) + ants.pupae + ants.worker + 10
+  let maxStore = Math.max(200, ants.worker* 30)
+  let waterRate = (1-(1/home.resources.water)) * ants.worker *baseRate;
+  let foodRate = (1-(1/home.resources.food)) * ants.worker *baseRate;
+  console.log(waterRate, foodRate)
+  let deductFromStore = 0.3*ants.eggs + (ants.larvae * 3) + 0.5*ants.pupae + ants.worker + 10
   let newStore = {
-    food: store.food + waterRate - deductFromStore,
-    water: store.water + foodRate - deductFromStore
+    food: Math.min(maxStore, Math.floor(store.food + waterRate - deductFromStore)),
+    water: Math.min(maxStore, Math.floor(store.water + foodRate - deductFromStore))
   }
 
   return newStore
@@ -48,14 +75,15 @@ export function calcNewStore(reduxState){
 
 //eggs turn into larvae => pupae => ants
 
-
-export function calcCurrentAnts(reduxState){
+export function calcCurrentAnts(reduxState, choice){
   let {ants, store} = reduxState;
-  console.log(ants)
-  let foodPercentage = ants.worker * 20/store.food;
-  let waterPercentage = ants.worker * 20/store.water;
+  let bonus = (choice === "birth") ? 1.5: 1
+  let foodPercentage = Math.max(150, ants.worker * 20)/store.food;
+  let waterPercentage = Math.max(150, ants.worker * 20)/store.water;
   let storePercentage = (foodPercentage+ waterPercentage)/2
-  let newEggNum = storePercentage*Math.log(Math.max(1, ants.worker))*0.6+5
+  console.log(storePercentage)
+  let newEggNum = Math.floor((storePercentage*Math.log(Math.max(1, ants.worker))*0.3+6)*bonus)
+  console.log(newEggNum)
   let newAntNums = {
     eggs: newEggNum,
     larvae: ants.eggs,
@@ -72,73 +100,74 @@ export function rollEvents(reduxState){
   //rolls for each if rolls high, good thing
   //rolls for each if rolls low, disaster
 
-  //temperature
-  let rollTemp = 50/home.weather.temperature.risk
+  //temperature events
+  let rollTemp = 50/(10-home.weather.temperature.risk)
   if(Math.random()*100<= rollTemp){
-    let randomDisast = selectRandomfromArray(disasterEvents.temperature[home.weather.temperature.desc])
-    disasters.push(randomDisast)
+    let eventID = selectRandomfromArray(categories.temperature[home.weather.temperature.desc])
+    let newEvent = events.temperature.filter(event=> event.id === eventID)[0]
+    disasters.push(newEvent)
   }
-      //max 20% chance
-          //50/10
-      //min 5% chance
-  //humidity
-  //food
-  //water
-  //human
-  //animal
-  //ant
+
+  //water-related events
+  let rollHumid = 50/(10-home.weather.humidity.risk)
+  if(Math.random()*100 <=rollHumid){
+    let eventID = selectRandomfromArray(categories.humidity[home.weather.humidity.desc])
+    let newEvent = events.humidity.filter(event=> event.id === eventID)[0];
+    disasters.push(newEvent)
+  }
+
+  //animal events
+  let rollAnimal = 50/(10-home.risk.animal)
+  if(Math.random()*100 <= rollAnimal){
+    let eventID = selectRandomfromArray(categories.animal);
+    let newEvent = events.humidity.filter(event=> event.id ===eventID)[0];
+    disasters.push(newEvent)
+  }
+
+  //human related events
+  let rollHuman = 50/(10-home.risk.human)
+  if(Math.random()*100 <= rollHuman){
+    let eventID = selectRandomfromArray(categories.human);
+    let newEvent = events.humidity.filter(event=> event.id === eventID)[0];
+    disasters.push(newEvent)
+  }
+
+  //ant related events
+  let rollAnt = 50/(10-home.risk.ant)
+  if(Math.random()*100 <= rollAnt){
+    let eventID = selectRandomfromArray(categories.ant);
+    let newEvent = events.humidity.filter(event=> event.id === eventID)[0];
+    disasters.push(newEvent)
+  }
+
+  if(disasters.length === 0){
+    return null
+  } else{
+    return disasters[Math.floor(Math.random()*disasters.length)]
+  }
 }
 
-export const disasterEvents = {
+//categories filled with possible event IDs for each property
+export const categories = {
   temperature: {
-    frozen: [
-      {description: "A freak snowstorm blows through. Many of your ants are caught while out gathering food and freeze to death",
-      effects: {
-      type: "ant",
-      subtype: 'worker',
-      effect: 0.7 }},
-      {
-        description: 'The snow piles up and moving around becomes harder for your workers. You end up having to rely on your stores for while.',
-        effects:{
-          type: 'resource',
-          subtype: 'food',
-          effect: 0.8
-        }
-      },
-      {
-        description: 'A sudden hailstorm batters your colony. You lose some of your workers.',
-        effect: {
-          type: 'ant',
-          subtype: 'worker',
-          effect: 0.9
-        }
-      }
-    ],
-    cold: [
-      {description: "Cold: A freak snowstorm blows through. Many of your ants are caught while out gathering food and freeze to death",
-      effects: {
-      type: "ant",
-      subtype: 'worker',
-      effect: 0.7 }},
-      {
-        description: 'Cold: The snow piles up and moving around becomes harder for your workers. You end up having to rely on your stores for while.',
-        effects:{
-          type: 'resource',
-          subtype: 'food',
-          effect: 0.8
-        }
-      },
-      {
-        description: 'Cold: A sudden hailstorm batters your colony. You lose some of your workers.',
-        effect: {
-          type: 'ant',
-          subtype: 'worker',
-          effect: 0.9
-        }
-      }
-    ]
+    frozen: ["t1", "t2", "t3"],
+    cold: ["t1", "t2", "t3"],
+    chilly: ["t1", "t2", "t3"],
+    mild: ["t1", "t2", "t3"],
+    warm: ["t1", "t2", "t3"],
+    hot: ["t1", "t2", "t3"],
+    searing: ["t1", "t2", "t3"]
   },
-  humidity: []
+  humidity: {
+    'very wet': ["h1"],
+    wet: ['h1'],
+    dry: ['h1'],
+    'very dry': ['h1']
+  },
+  animal: ['e1'],
+  human: ['hu1'],
+  ant: ['a1']
+
 }
 
 //output is a object with description of event and new State

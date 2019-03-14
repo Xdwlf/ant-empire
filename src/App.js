@@ -12,10 +12,12 @@ class App extends Component {
     super(props);
     this.state={
       page: 'choice',
-      choice: null
+      choice: null,
+      eventDisplay: null
     }
     this.changePage = this.changePage.bind(this)
     this.setChoice = this.setChoice.bind(this)
+    this.displayEvent = this.displayEvent(this)
   }
 
   changePage(page){
@@ -28,9 +30,12 @@ class App extends Component {
       //set home to null
       //redirects to searching
     } else{
-      this.props.updateChoice({choice})
+      this.props.updateChoice(choice)
       this.changePage('event')
     }
+  }
+
+  displayEvent(event){
 
   }
 
@@ -38,7 +43,7 @@ class App extends Component {
     //logic to figure out which page to render
     let page = loadPage(this.state.page, this.changePage, this.setChoice)
     let status = (this.state.page !== 'enter' && this.state.page !== 'prequel') ?
-          (<div className='sidebar'> <ColonyStatus /> </div>): null
+        (<div className='sidebar'> <ColonyStatus displayEvent={this.displayEvent} event={this.props.eventDisplay}/> </div>): null
     return (
       <div className="App">
         <div className='mainscreen'>
