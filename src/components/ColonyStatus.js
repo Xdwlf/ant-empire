@@ -10,7 +10,6 @@ class ColonyStatus extends Component{
   render(){
     let {event, ants, home, store, fuel} = this.props.state
     let eventEffect = (event)? calcEventEffects(event, this.props.state) : null;
-    console.log(eventEffect)
     return(<div><h4>Status Bar</h4>
       <div>
         <div>
