@@ -15,17 +15,18 @@ class Event extends Component{
     let newEvent = generateEvent(this.props.reduxState)
     let firstParagraph = describeChoice(this.props.reduxState.choice)
     this.props.updateAll(newEvent.state)
-    if(newEvent.event) this.props.setEvent(newEvent.event)
+    if(newEvent.events.length>0) this.props.setEvent(newEvent.events)
     this.setState({firstParagraph})
   }
 
   componentWillUnmount(){
-    this.props.setEvent(null)
+    this.props.setEvent([])
   }
 
   render(){
     let firstParagraph = this.state.firstParagraph
-    let eventParagraph = (this.props.reduxState.event) ? this.props.reduxState.event.description: "Not much happens"
+    console.log(this.props.reduxState)
+    let eventParagraph = (this.props.reduxState.event && this.props.reduxState.event.length>1) ? this.props.reduxState.event[1].description: "Not much happens"
 
     return (
       <div>

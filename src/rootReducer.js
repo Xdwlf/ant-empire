@@ -16,7 +16,7 @@ const initialState = {
   page: 'enter',
   choice: null,
   game: true,
-  event: null
+  event: []
 }
 
 export default function rootReducer(state=initialState, action){

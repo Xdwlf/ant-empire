@@ -15,11 +15,20 @@ export function describeChoice(choice){
 export function generateEvent(reduxState){
   let {choice, home, store, ants, game, fuel} = reduxState
   let newState = {...reduxState}
+  let events = [{description: 'filler',
+                  subtype: 'filling',
+                effects: [{
+                  type: 'filler',
+                  subtype: 'filler',
+                  number: 0.3
+
+                }]}]
   let updatedAnts = calcCurrentAnts(reduxState, choice)
   let updatedStore = calcNewStore(reduxState)
   // calculate possiblity of events
   let event = rollEvents(reduxState)
-  return { event,
+  if(event) events.push(event)
+  return { events,
     state: {
       ...newState, ants: updatedAnts, store: updatedStore
     }
@@ -27,26 +36,7 @@ export function generateEvent(reduxState){
   //return new object
 }
 
-export function calcEventEffects(event, reduxState){
-  if(!event) return null;
-  let {ants, store, home} = reduxState
-  let effect;
-  let value;
-  if(event.type=== 'ant'){
-    effect = Math.floor(ants[event.subtype]*event.effect) - ants[event.subtype]
-    value = (effect>=0)? '+': '-';
 
-  }
-  console.log('calculating')
-  console.log(event, effect)
-  return {
-    type: event.type,
-    subtype: event.subtype,
-    value,
-    number: effect
-
-  }
-}
 
 //calculate new ants object
   //birth rate depends on colony size and stores of food and water
@@ -63,7 +53,6 @@ export function calcNewStore(reduxState){
   let maxStore = Math.max(200, ants.worker* 30)
   let waterRate = (1-(1/home.resources.water)) * ants.worker *baseRate;
   let foodRate = (1-(1/home.resources.food)) * ants.worker *baseRate;
-  console.log(waterRate, foodRate)
   let deductFromStore = 0.3*ants.eggs + (ants.larvae * 3) + 0.5*ants.pupae + ants.worker + 10
   let newStore = {
     food: Math.min(maxStore, Math.floor(store.food + waterRate - deductFromStore)),
@@ -81,9 +70,7 @@ export function calcCurrentAnts(reduxState, choice){
   let foodPercentage = Math.max(150, ants.worker * 20)/store.food;
   let waterPercentage = Math.max(150, ants.worker * 20)/store.water;
   let storePercentage = (foodPercentage+ waterPercentage)/2
-  console.log(storePercentage)
   let newEggNum = Math.floor((storePercentage*Math.log(Math.max(1, ants.worker))*0.3+6)*bonus)
-  console.log(newEggNum)
   let newAntNums = {
     eggs: newEggNum,
     larvae: ants.eggs,
@@ -187,3 +174,30 @@ export const categories = {
 //defend decreases death in event of an event
 
 //change home
+
+export function compileEffects(events){
+  if(!events) return []
+  let effects = events.reduce((accum, curr) => [...accum, ...curr.effects], [])
+  return effects
+}
+
+export function addUpEffects(effects){
+  return effects.reduce((accum, effect)=> accum+effect.number, 0)
+}
+
+export function calcEventEffects(event, reduxState){
+  if(!event) return [];
+  let {ants, store, home} = reduxState
+  let effect;
+  let value;
+  if(event.type=== 'ant'){
+    effect = Math.floor(ants[event.subtype]*event.number) - ants[event.subtype]
+    value = (effect>=0)? '+': '-';
+  }
+  return {
+    type: event.type,
+    subtype: event.subtype,
+    value,
+    number: effect
+  }
+}

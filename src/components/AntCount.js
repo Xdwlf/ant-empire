@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import {addUpEffects, calcEventEffects} from '../utils/generateEvent'
 
 class AntCount extends Component{
   constructor(props){
@@ -6,13 +7,16 @@ class AntCount extends Component{
   }
   render(){
     let {ants, eventEffect} = this.props
-    let number = (eventEffect) ? Math.abs(eventEffect.number): null;
+    let eggEffect = addUpEffects(eventEffect.filter(event => event.subtype === 'eggs'))
+    let larvaeEffect = addUpEffects(eventEffect.filter(event => event.subtype === 'larvae'))
+    let pupaeEffect = addUpEffects(eventEffect.filter(event => event.subtype === 'pupae'))
+    let workerEffect = addUpEffects( eventEffect.filter(event => event.subtype === 'worker') )
     return (
       <div>
-        <div>Eggs: {ants.eggs} {(eventEffect && eventEffect.number!==0 && eventEffect.subtype==='eggs')? eventEffect.value + number: ''}</div>
-        <div>Larvae: {ants.larvae} {(eventEffect && eventEffect.number!==0 && eventEffect.subtype==='larvae')? eventEffect.value + number: ''}</div>
-        <div>Pupae: {ants.pupae} {(eventEffect && eventEffect.number!==0 && eventEffect.subtype==='pupae')? eventEffect.value + number: ''}</div>
-        <div>Worker Ants: {ants.worker} {(eventEffect && eventEffect.number!==0 && eventEffect.subtype==='worker')? eventEffect.value + number: ''}</div>
+        <div>Eggs: {ants.eggs} {(eggEffect!==0)? eggEffect: ''}</div>
+        <div>Larvae: {ants.larvae} {(larvaeEffect!==0)? larvaeEffect: ''}</div>
+        <div>Pupae: {ants.pupae} {(pupaeEffect!==0)? pupaeEffect: ''}</div>
+        <div>Worker Ants: {ants.worker} {(workerEffect!==0)? workerEffect: ''}</div>
       </div>
     )
   }
