@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import {calcEventEffects, compileEffects} from '../utils/generateEvent'
 import AntCount from './AntCount'
 import ResourceCount from './ResourceCount'
+import StoreCount from './StoreCount'
 
 class ColonyStatus extends Component{
   constructor(props){
@@ -24,9 +25,7 @@ class ColonyStatus extends Component{
         <div>
           <div>Your Home: {(home)? home.description: null}</div>
           <ResourceCount eventEffect={resourceEvents} resources={(home) ? home.resources: null}/>
-          <h4>Storage</h4>
-          <div>Food: {store.food}</div>
-          <div>Water: {store.water}</div>
+          <StoreCount eventEffect={storeEvents} store={store} />
           <h4>Weather: {(home)? home.weather.temperature.desc + ' and ' + home.weather.humidity.desc:null}</h4>
         </div>
       </div>
