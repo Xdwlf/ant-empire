@@ -9,7 +9,7 @@ export const events = {
                 id: "t2",
                 effects: [{type: 'resource',
                 subtype: 'food',
-                number: 0.8}]
+                number: -1}]
                 },{
                 description: 'A sudden hailstorm batters your colony. You lose some of your workers.',
                 id: "t3",
@@ -26,6 +26,10 @@ export const events = {
                   type: 'ant',
                   subtype: 'pupae',
                   number: 0.8
+                }, {
+                  type: 'resource',
+                  subtype: 'water',
+                  number: 1
                 }]
             }],
     animal: [{

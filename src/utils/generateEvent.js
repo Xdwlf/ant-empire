@@ -88,7 +88,7 @@ export function rollEvents(reduxState){
   //rolls for each if rolls low, disaster
 
   //temperature events
-  let rollTemp = 50/(10-home.weather.temperature.risk)
+  let rollTemp = 100/(10-home.weather.temperature.risk)
   if(Math.random()*100<= rollTemp){
     let eventID = selectRandomfromArray(categories.temperature[home.weather.temperature.desc])
     let newEvent = events.temperature.filter(event=> event.id === eventID)[0]
@@ -96,7 +96,7 @@ export function rollEvents(reduxState){
   }
 
   //water-related events
-  let rollHumid = 50/(10-home.weather.humidity.risk)
+  let rollHumid = 100/(10-home.weather.humidity.risk)
   if(Math.random()*100 <=rollHumid){
     let eventID = selectRandomfromArray(categories.humidity[home.weather.humidity.desc])
     let newEvent = events.humidity.filter(event=> event.id === eventID)[0];
@@ -104,7 +104,7 @@ export function rollEvents(reduxState){
   }
 
   //animal events
-  let rollAnimal = 50/(10-home.risk.animal)
+  let rollAnimal = 100/(10-home.risk.animal)
   if(Math.random()*100 <= rollAnimal){
     let eventID = selectRandomfromArray(categories.animal);
     let newEvent = events.humidity.filter(event=> event.id ===eventID)[0];
@@ -112,7 +112,7 @@ export function rollEvents(reduxState){
   }
 
   //human related events
-  let rollHuman = 50/(10-home.risk.human)
+  let rollHuman = 100/(10-home.risk.human)
   if(Math.random()*100 <= rollHuman){
     let eventID = selectRandomfromArray(categories.human);
     let newEvent = events.humidity.filter(event=> event.id === eventID)[0];
@@ -120,7 +120,7 @@ export function rollEvents(reduxState){
   }
 
   //ant related events
-  let rollAnt = 50/(10-home.risk.ant)
+  let rollAnt = 100/(10-home.risk.ant)
   if(Math.random()*100 <= rollAnt){
     let eventID = selectRandomfromArray(categories.ant);
     let newEvent = events.humidity.filter(event=> event.id === eventID)[0];
@@ -193,6 +193,9 @@ export function calcEventEffects(event, reduxState){
   if(event.type=== 'ant'){
     effect = Math.floor(ants[event.subtype]*event.number) - ants[event.subtype]
     value = (effect>=0)? '+': '-';
+  }
+  if(event.type=== 'resource'){
+    effect = event.number
   }
   return {
     type: event.type,

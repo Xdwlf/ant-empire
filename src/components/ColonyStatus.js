@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {calcEventEffects, compileEffects} from '../utils/generateEvent'
 import AntCount from './AntCount'
+import ResourceCount from './ResourceCount'
 
 class ColonyStatus extends Component{
   constructor(props){
@@ -12,6 +13,8 @@ class ColonyStatus extends Component{
     const allEvents = (event)? compileEffects(event): []
     const allEffects = (allEvents.length>0)? allEvents.map(event=> calcEventEffects(event, this.props.state)): []
     let antEvents = allEffects.filter(effect=> effect.type==='ant')
+    let resourceEvents = allEffects.filter(effect=> effect.type==='resource')
+    let storeEvents = allEvents.filter(effect=> effect.type==='store')
 
     return(<div><h4>Status Bar</h4>
       <div>
@@ -20,13 +23,10 @@ class ColonyStatus extends Component{
         </div>
         <div>
           <div>Your Home: {(home)? home.description: null}</div>
-          <h4>Resources</h4>
-          <div>Food: {(home)? home.resources.food: null}</div>
-          <div>Water: {(home)? home.resources.water: null}</div>
+          <ResourceCount eventEffect={resourceEvents} resources={(home) ? home.resources: null}/>
           <h4>Storage</h4>
           <div>Food: {store.food}</div>
           <div>Water: {store.water}</div>
-          <h4>Fuel: {fuel}</h4>
           <h4>Weather: {(home)? home.weather.temperature.desc + ' and ' + home.weather.humidity.desc:null}</h4>
         </div>
       </div>
