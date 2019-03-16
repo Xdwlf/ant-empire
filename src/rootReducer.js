@@ -1,4 +1,5 @@
 import {SET_HOME, UPDATE_FUEL, UPDATE_GAMESTATUS, UPDATE_CHOICE, UPDATE_ALL, SET_EVENT} from './actionCreators'
+import {gameStatus} from './utils/gameHelpers'
 
 const initialState = {
   ants: {
@@ -16,7 +17,8 @@ const initialState = {
   page: 'enter',
   choice: null,
   game: true,
-  event: []
+  event: [],
+  status: gameStatus.HEALTHY
 }
 
 export default function rootReducer(state=initialState, action){

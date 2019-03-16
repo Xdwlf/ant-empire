@@ -1,17 +1,15 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import ColonyStatus from './components/ColonyStatus'
 import loadPage from './utils/LoadPage'
-import {Link, Route, Redirect} from 'react-router-dom'
-import {updateChoice} from './actionCreators'
+import {updateChoice, setHome} from './actionCreators'
 import {connect} from 'react-redux';
 
 class App extends Component {
   constructor(props){
     super(props);
     this.state={
-      page: 'choice',
+      page: 'enter',
       choice: null,
       eventDisplay: null
     }
@@ -28,7 +26,9 @@ class App extends Component {
     if(choice === 'change'){
       //set fuel and stores
       //set home to null
+      this.props.setHome(null)
       //redirects to searching
+      this.changePage('searching')
     } else{
       this.props.updateChoice(choice)
       this.changePage('event')
@@ -61,4 +61,4 @@ function mapStateToProps(reduxState){
   }
 }
 
-export default connect(mapStateToProps, {updateChoice})(App);
+export default connect(mapStateToProps, {updateChoice, setHome})(App);

@@ -1,37 +1,45 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {generateEvent, describeChoice} from '../utils/generateEvent'
+import {generateEvent, describeChoice, compileEffects, applyEffectsToStatus, calcEventEffects} from '../utils/generateEvent'
 import {updateAll, setEvent} from '../actionCreators'
 
 class Event extends Component{
   constructor(props){
     super(props)
     this.state = {
-      firstParagraph: 'This is a paragraph'
+      narrative: []
     }
   }
 
   componentWillMount(){
-    let newEvent = generateEvent(this.props.reduxState)
+    let narrative = []
+    const {events,state} = generateEvent(this.props.reduxState)
     let firstParagraph = describeChoice(this.props.reduxState.choice)
-    this.props.updateAll(newEvent.state)
-    if(newEvent.events.length>0) this.props.setEvent(newEvent.events)
-    this.setState({firstParagraph})
+    narrative.push(firstParagraph)
+    events.map(event=> narrative.push(event.description))
+    const allEvents = (events)? compileEffects(events): []
+    const allEffects = (allEvents.length>0)? allEvents.map(e=> calcEventEffects(e, this.props.reduxState)): []
+    //check game status of state
+      //if game over, add gameover paragraph
+
+    this.props.updateAll(state)
+    if(allEffects.length>0) this.props.setEvent(allEffects)
+    this.setState({narrative})
   }
 
   componentWillUnmount(){
-    this.props.setEvent([])
+    const updatedState = applyEffectsToStatus(this.props.reduxState.event, this.props.reduxState)
+    updatedState.event = []
+    this.props.updateAll(updatedState)
   }
 
   render(){
-    let firstParagraph = this.state.firstParagraph
-    console.log(this.props.reduxState)
-    let eventParagraph = (this.props.reduxState.event && this.props.reduxState.event.length>1) ? this.props.reduxState.event[1].description: "Not much happens"
-
+    let story = this.state.narrative.map((paragraph, idx)=> (
+      <div key={idx}>{paragraph}</div>
+    ))
     return (
       <div>
-        {firstParagraph}
-        {eventParagraph}
+        {story}
         <button onClick={()=> this.props.changePage('gameplay')}>Continue</button>
       </div>
     )

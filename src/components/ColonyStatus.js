@@ -11,11 +11,9 @@ class ColonyStatus extends Component{
   }
   render(){
     let {event, ants, home, store, fuel} = this.props.state
-    const allEvents = (event)? compileEffects(event): []
-    const allEffects = (allEvents.length>0)? allEvents.map(event=> calcEventEffects(event, this.props.state)): []
-    let antEvents = allEffects.filter(effect=> effect.type==='ant')
-    let resourceEvents = allEffects.filter(effect=> effect.type==='resource')
-    let storeEvents = allEvents.filter(effect=> effect.type==='store')
+    let antEvents = event.filter(effect=> effect.type==='ant')
+    let resourceEvents = event.filter(effect=> effect.type==='resource')
+    let storeEvents = event.filter(effect=> effect.type==='store')
 
     return(<div><h4>Status Bar</h4>
       <div>

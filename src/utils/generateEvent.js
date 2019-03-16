@@ -1,5 +1,5 @@
 import {selectRandomfromArray, randomIntFromInterval} from './general'
-import {events} from './eventData'
+import {events, categories} from './eventData'
 
 
 export const choiceDesc = {
@@ -28,6 +28,8 @@ export function generateEvent(reduxState){
   // calculate possiblity of events
   let event = rollEvents(reduxState)
   if(event) events.push(event)
+  //check gameover
+  //if gameover, add description to end of narrative
   return { events,
     state: {
       ...newState, ants: updatedAnts, store: updatedStore
@@ -55,8 +57,8 @@ export function calcNewStore(reduxState){
   let foodRate = (1-(1/home.resources.food)) * ants.worker *baseRate;
   let deductFromStore = 0.3*ants.eggs + (ants.larvae * 3) + 0.5*ants.pupae + ants.worker + 10
   let newStore = {
-    food: Math.min(maxStore, Math.floor(store.food + waterRate - deductFromStore)),
-    water: Math.min(maxStore, Math.floor(store.water + foodRate - deductFromStore))
+    food: Math.max(0, Math.min(maxStore, Math.floor(store.food + waterRate - deductFromStore))),
+    water: Math.max(0, Math.min(maxStore, Math.floor(store.water + foodRate - deductFromStore)))
   }
 
   return newStore
@@ -72,10 +74,10 @@ export function calcCurrentAnts(reduxState, choice){
   let storePercentage = (foodPercentage+ waterPercentage)/2
   let newEggNum = Math.floor((storePercentage*Math.log(Math.max(1, ants.worker))*0.3+6)*bonus)
   let newAntNums = {
-    eggs: newEggNum,
-    larvae: ants.eggs,
-    pupae: ants.larvae,
-    worker: ants.worker + ants.pupae
+    eggs: Math.max(0, newEggNum),
+    larvae: Math.max(0, ants.eggs),
+    pupae: Math.max(0, ants.larvae),
+    worker: Math.max(ants.worker + ants.pupae, 0)
   }
   return newAntNums;
 }
@@ -135,27 +137,7 @@ export function rollEvents(reduxState){
 }
 
 //categories filled with possible event IDs for each property
-export const categories = {
-  temperature: {
-    frozen: ["t1", "t2", "t3"],
-    cold: ["t1", "t2", "t3"],
-    chilly: ["t1", "t2", "t3"],
-    mild: ["t1", "t2", "t3"],
-    warm: ["t1", "t2", "t3"],
-    hot: ["t1", "t2", "t3"],
-    searing: ["t1", "t2", "t3"]
-  },
-  humidity: {
-    'very wet': ["h1"],
-    wet: ['h1'],
-    dry: ['h1'],
-    'very dry': ['h1']
-  },
-  animal: ['e1'],
-  human: ['hu1'],
-  ant: ['a1']
 
-}
 
 //output is a object with description of event and new State
 //ex. {newState: state, desc:description}
@@ -197,10 +179,42 @@ export function calcEventEffects(event, reduxState){
   if(event.type=== 'resource'){
     effect = event.number
   }
+  if(event.type=== 'store'){
+    effect = Math.floor(store[event.subtype] * event.number)
+  }
   return {
     type: event.type,
     subtype: event.subtype,
     value,
     number: effect
   }
+}
+
+export function applyEffectsToStatus(effects, status){
+  let types = {};
+  let newStatus = {...status}
+  const ants = {...status.ants}
+  const store = {...status.store}
+  effects.map(effect=> (types.hasOwnProperty(effect.type))?
+    types[effect.type].push(effect): types[effect.type] = [effect])
+  for(let key in types){
+    if(key === 'ant'){
+      types[key].map(effect=>{
+        newStatus.ants = Object.assign({}, newStatus.ants, {[effect.subtype]: Math.max(0, newStatus.ants[effect.subtype] + effect.number)})}
+      )
+    }
+    if(key === 'store'){
+      types[key].map(effect=> {
+        newStatus.store = Object.assign({}, newStatus.store, {[effect.subtype]: Math.max(0, newStatus.store[effect.subtype] + effect.number)})
+      })
+    }
+    if(key === 'resource'){
+      newStatus.home = {...status.home}
+      types[key].map(effect=>{
+        const resources = {...newStatus.home.resources}
+        newStatus.home.resources = Object.assign({}, resources, {[effect.subtype]: Math.max(1, resources[effect.subtype]+ effect.number)})
+      } )
+    }
+  }
+  return newStatus
 }

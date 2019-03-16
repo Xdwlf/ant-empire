@@ -1,3 +1,25 @@
+export const categories = {
+  temperature: {
+    frozen: ["t1", "t2", "t3"],
+    cold: ["t1", "t2", "t3"],
+    chilly: ["t1", "t2", "t3"],
+    mild: ["t1", "t2", "t3"],
+    warm: ["t1", "t2", "t3"],
+    hot: ["t1", "t2", "t3"],
+    searing: ["t1", "t2", "t3"]
+  },
+  humidity: {
+    'very wet': ["h1"],
+    wet: ['h1'],
+    dry: ['h1', 'h2'],
+    'very dry': ['h1', 'h2']
+  },
+  animal: ['e1'],
+  human: ['hu1'],
+  ant: ['a1']
+
+}
+
 export const events = {
   temperature: [{description: "A freak snowstorm blows through. Many of your ants are caught while out gathering food and freeze to death",
                 id: "t1",
@@ -30,7 +52,23 @@ export const events = {
                   type: 'resource',
                   subtype: 'water',
                   number: 1
+                }, {
+                  type: "store",
+                  subtype: 'water',
+                  number: 1.3
                 }]
+            },{
+              description: "Fire",
+              id: "h2",
+              effects: [{
+                type: 'store',
+                subtype: 'food',
+                number: 0.8
+              },{
+                type: 'store',
+                subtype: 'water',
+                number: 0.7
+              }]
             }],
     animal: [{
             description: 'Anteater',
