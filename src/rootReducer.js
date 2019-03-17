@@ -1,5 +1,5 @@
 import {SET_HOME, UPDATE_FUEL, UPDATE_GAMESTATUS, UPDATE_CHOICE, UPDATE_ALL, SET_EVENT} from './actionCreators'
-import {gameStatus} from './utils/gameHelpers'
+import {gStatus} from './utils/gameHelpers'
 
 const initialState = {
   ants: {
@@ -9,8 +9,8 @@ const initialState = {
     worker: 0
   },
   store: {
-    food: 200,
-    water: 200
+    food: 10,
+    water: 100
   },
   fuel: 100,
   home: null,
@@ -18,7 +18,7 @@ const initialState = {
   choice: null,
   game: true,
   event: [],
-  status: gameStatus.HEALTHY
+  status: [gStatus.HEALTHY]
 }
 
 export default function rootReducer(state=initialState, action){

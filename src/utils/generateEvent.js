@@ -1,5 +1,6 @@
 import {selectRandomfromArray, randomIntFromInterval} from './general'
 import {events, categories} from './eventData'
+import {gameOver, gStatus} from './gameHelpers'
 
 
 export const choiceDesc = {
@@ -14,7 +15,7 @@ export function describeChoice(choice){
 
 export function generateEvent(reduxState){
   let {choice, home, store, ants, game, fuel} = reduxState
-  let newState = {...reduxState}
+  let state = {...reduxState}
   let events = [{description: 'filler',
                   subtype: 'filling',
                 effects: [{
@@ -29,8 +30,13 @@ export function generateEvent(reduxState){
   let event = rollEvents(reduxState)
   if(event) events.push(event)
   //check gameover
+  let {narrative, newState} = gameOver({
+    ...state, ants: updatedAnts, store: updatedStore
+  })
   //if gameover, add description to end of narrative
-  return { events,
+  return {
+    narrative, 
+    events,
     state: {
       ...newState, ants: updatedAnts, store: updatedStore
     }
@@ -69,8 +75,8 @@ export function calcNewStore(reduxState){
 export function calcCurrentAnts(reduxState, choice){
   let {ants, store} = reduxState;
   let bonus = (choice === "birth") ? 1.5: 1
-  let foodPercentage = Math.max(150, ants.worker * 20)/store.food;
-  let waterPercentage = Math.max(150, ants.worker * 20)/store.water;
+  let foodPercentage = Math.max(150, ants.worker * 20)/Math.max(1, store.food);
+  let waterPercentage = Math.max(150, ants.worker * 20)/Math.max(1,store.water);
   let storePercentage = (foodPercentage+ waterPercentage)/2
   let newEggNum = Math.floor((storePercentage*Math.log(Math.max(1, ants.worker))*0.3+6)*bonus)
   let newAntNums = {
@@ -180,7 +186,7 @@ export function calcEventEffects(event, reduxState){
     effect = event.number
   }
   if(event.type=== 'store'){
-    effect = Math.floor(store[event.subtype] * event.number)
+    effect = Math.floor(store[event.subtype] * event.number - store[event.subtype])
   }
   return {
     type: event.type,

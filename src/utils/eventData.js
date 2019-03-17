@@ -55,7 +55,7 @@ export const events = {
                 }, {
                   type: "store",
                   subtype: 'water',
-                  number: 1.3
+                  number: 1.1
                 }]
             },{
               description: "Fire",

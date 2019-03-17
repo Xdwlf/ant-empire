@@ -2,21 +2,23 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {generateEvent, describeChoice, compileEffects, applyEffectsToStatus, calcEventEffects} from '../utils/generateEvent'
 import {updateAll, setEvent} from '../actionCreators'
+import {gStatus} from '../utils/gameHelpers'
 
 class Event extends Component{
   constructor(props){
     super(props)
     this.state = {
-      narrative: []
+      story: []
     }
   }
 
   componentWillMount(){
-    let narrative = []
-    const {events,state} = generateEvent(this.props.reduxState)
+    let story = []
+    const {narrative, events,state} = generateEvent(this.props.reduxState)
     let firstParagraph = describeChoice(this.props.reduxState.choice)
-    narrative.push(firstParagraph)
-    events.map(event=> narrative.push(event.description))
+    story.push(firstParagraph)
+    story= story.concat(narrative)
+    events.map(event=> story.push(event.description))
     const allEvents = (events)? compileEffects(events): []
     const allEffects = (allEvents.length>0)? allEvents.map(e=> calcEventEffects(e, this.props.reduxState)): []
     //check game status of state
@@ -24,7 +26,7 @@ class Event extends Component{
 
     this.props.updateAll(state)
     if(allEffects.length>0) this.props.setEvent(allEffects)
-    this.setState({narrative})
+    this.setState({story})
   }
 
   componentWillUnmount(){
@@ -34,13 +36,16 @@ class Event extends Component{
   }
 
   render(){
-    let story = this.state.narrative.map((paragraph, idx)=> (
+    let story = this.state.story.map((paragraph, idx)=> (
       <div key={idx}>{paragraph}</div>
     ))
+    let button = (this.props.reduxState.status.every(s=> s===gStatus.HEALTHY || s===gStatus.THIRSTY ||s===gStatus.HUNGRY || s===gStatus.STARVING ||s===gStatus.DEHYDRATED))?
+                        (<button onClick={()=> this.props.changePage('gameplay')}>Continue</button>): <button>Start Over</button>
+
     return (
       <div>
         {story}
-        <button onClick={()=> this.props.changePage('gameplay')}>Continue</button>
+        {button}
       </div>
     )
   }
