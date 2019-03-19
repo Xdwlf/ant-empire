@@ -54,3 +54,12 @@ body, html{
   flex-grow: 8;
   border: 2px solid green;
 }
+
+.invisible{
+  opacity: 0;
+  transition: 2s linear;
+}
+
+.fade-in{
+  opacity: 1
+}

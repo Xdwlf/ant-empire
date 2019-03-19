@@ -22,7 +22,6 @@ class Searching extends Component{
       this.props.updateChoice(null)
     }
     return (<div>
-
       {change}
       Searching...
       </div>

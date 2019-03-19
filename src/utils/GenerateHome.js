@@ -46,7 +46,7 @@ export default function generateHome(){
   let environ = selectRandomfromArray(descriptions.environment)
   let home = selectRandomfromArray(descriptions.home)
   let hrisk = selectRandomfromArray(descriptions.human)
-  let newHome = {description: `A ${humid.desc} and ${temp.desc} in a ${home} ${environ}, ${hrisk.desc}`,
+  let newHome = {description: [`A ${humid.desc} and ${temp.desc} in a ${home} ${environ}, ${hrisk.desc}`],
       resources: {
         food: temp.resource,
         water: humid.resource

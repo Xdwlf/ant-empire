@@ -7,37 +7,39 @@ class Choice extends Component{
   constructor(props){
     super(props)
     this.state={
-      story:[]
+      story:[],
+      currentHome: null
     }
-    this.generateStory= this.generateStory.bind(this)
-    this.generateStory(this.props.fuel)
     this.selectHome = this.selectHome.bind(this)
   }
-  generateStory(fuel){
-    let deductFuel = Math.floor(Math.random()*20)
-    let narrative;
-    let i=0;
-    if(fuel < 20 && fuel-deductFuel<=0){
-      narrative = ["You have run out of fuel.", "Your journey is over", <button>Start Over</button>]
-      this.props.updateGameStatus(false)
-    } else{
-      //user props to generate a story
-
-    }
+  componentWillMount(){
+    let currentHome = generateHome()
+    let beginning = ["You have wandered upon a new area."]
+    let newHomeDesc = beginning.concat(currentHome.description).concat([<div>
+              <button onClick={()=> this.props.changePage('searching')}>Keep Looking</button>
+              <button onClick={()=>{this.selectHome(this.state.currentHome)}}>Settle Down</button>
+            </div>])
+    this.setState({currentHome})
+    this.interval = setInterval(()=> this.setState({story: [...this.state.story, newHomeDesc.splice(0, 1)]}), 1500)
   }
+
+  componentWillUnmount(){
+    clearInterval(this.interval)
+  }
+
   selectHome(home){
     this.props.setHome(home)
     this.props.changePage('gameplay')
   }
+
+
   render(){
-    let newHome = generateHome()
-    let newHomeDesc = newHome.description
+    let story = this.state.story.map((line, idx) => (
+      <div key={idx}> {line} </div>
+    ))
     return(
       <div>
-        <div>You have wandered upon a new area.</div>
-        <div>{newHomeDesc}</div>
-        <button onClick={()=> this.props.changePage('searching')}>Keep Looking</button>
-        <button onClick={()=>{this.selectHome(newHome)}}>Settle Down</button>
+        <div>{story}</div>
       </div>
     )
   }
