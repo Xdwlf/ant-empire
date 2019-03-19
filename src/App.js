@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import './App.css';
 import ColonyStatus from './components/ColonyStatus'
 import loadPage from './utils/LoadPage'
-import {updateChoice, setHome} from './actionCreators'
+import {packUpAndGo} from './utils/generateEvent'
+import {updateChoice, setHome, resetState, setStore} from './actionCreators'
 import {connect} from 'react-redux';
 
 class App extends Component {
@@ -10,12 +11,10 @@ class App extends Component {
     super(props);
     this.state={
       page: 'enter',
-      choice: null,
-      eventDisplay: null
     }
     this.changePage = this.changePage.bind(this)
     this.setChoice = this.setChoice.bind(this)
-    this.displayEvent = this.displayEvent.bind(this)
+    this.resetGame = this.resetGame.bind(this)
   }
 
   changePage(page){
@@ -23,27 +22,29 @@ class App extends Component {
   }
 
   setChoice(choice){
+    this.props.updateChoice(choice)
     if(choice === 'change'){
       //set fuel and stores
-      //set home to null
       this.props.setHome(null)
       //redirects to searching
+      this.props.setStore(packUpAndGo(this.props.store, this.props.ants))
       this.changePage('searching')
     } else{
-      this.props.updateChoice(choice)
       this.changePage('event')
     }
   }
 
-  displayEvent(event){
-
+  resetGame(){
+    this.props.resetState()
+    this.setState({page:'enter'})
   }
+
 
   render() {
     //logic to figure out which page to render
-    let page = loadPage(this.state.page, this.changePage, this.setChoice)
+    let page = loadPage(this.state.page, this.changePage, this.setChoice, this.resetGame)
     let status = (this.state.page !== 'enter' && this.state.page !== 'prequel') ?
-        (<div className='sidebar'> <ColonyStatus displayEvent={this.displayEvent}/> </div>): null
+        (<div className='sidebar'> <ColonyStatus /> </div>): null
     return (
       <div className="App">
         <div className='mainscreen'>
@@ -61,4 +62,4 @@ function mapStateToProps(reduxState){
   }
 }
 
-export default connect(mapStateToProps, {updateChoice, setHome})(App);
+export default connect(mapStateToProps, {updateChoice, setHome, resetState, setStore})(App);

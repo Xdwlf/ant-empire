@@ -5,7 +5,7 @@ class Gameplay extends Component{
     super(props)
   }
   render(){
-    let setChoice = this.props.setChoice
+    let {setChoice} = this.props
     return (<div>
       <h4>What would you like to do?</h4>
 

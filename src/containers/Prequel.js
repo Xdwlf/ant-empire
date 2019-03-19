@@ -25,7 +25,7 @@ class Prequel extends Component{
             <button onClick={()=> this.props.changePage('choice')}>Start</button>]})
         clearInterval(interval)
       }
-    }, 2000)
+    }, 1000)
 
   }
   render(){

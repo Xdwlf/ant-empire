@@ -7,6 +7,7 @@ export function gameOver(reduxState){
       status = status.map(s=>{
         if(s=== gStatus.HUNGRY) return gStatus.STARVING
       })
+      //apply effects to ants
     }else if(status.some(s=> s== gStatus.STARVING)) {
       status = status.map(s=>{
         if(s=== gStatus.STARVING) return gStatus.DEATH_BY_STARVATION
@@ -21,6 +22,7 @@ export function gameOver(reduxState){
       status = status.map(s=>{
         if(s=== gStatus.THIRSTY) return gStatus.DEHYDRATED
       })
+      //apply effects to ants
     }else if(status.some(s=> s== gStatus.DEHYDRATED)) {
       status = status.map(s=>{
         if(s=== gStatus.DEHYDRATED) return gStatus.DEATH_BY_DEHYDRATION
@@ -30,6 +32,7 @@ export function gameOver(reduxState){
       status = [...status, gStatus.THIRSTY]
     }
   }
+
   let narrative = status.map(s=> gameStatusNarratives[s])
   return {
     narrative,
@@ -69,4 +72,12 @@ export const gameStatusNarratives = {
   KILLED_BY_PREDATORS : "KILLED_BY_PREDATORS",
   CAPTURED_BY_ANTS : "CAPTURED_BY_ANTS",
   CAPTURED_BY_HUMANS : "CAPTURED_BY_HUMANS"
+}
+
+export const statusEffects = {
+  STARVING: [{
+    type: "ant",
+    subtype: "worker",
+    number: 0.6
+  }]
 }

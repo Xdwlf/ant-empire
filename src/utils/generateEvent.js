@@ -22,7 +22,6 @@ export function generateEvent(reduxState){
                   type: 'filler',
                   subtype: 'filler',
                   number: 0.3
-
                 }]}]
   let updatedAnts = calcCurrentAnts(reduxState, choice)
   let updatedStore = calcNewStore(reduxState)
@@ -35,11 +34,11 @@ export function generateEvent(reduxState){
   })
   //if gameover, add description to end of narrative
   return {
-    narrative, 
+    narrative,
     events,
-    state: {
+    state: Object.assign({}, {
       ...newState, ants: updatedAnts, store: updatedStore
-    }
+    })
   }
   //return new object
 }
@@ -66,7 +65,6 @@ export function calcNewStore(reduxState){
     food: Math.max(0, Math.min(maxStore, Math.floor(store.food + waterRate - deductFromStore))),
     water: Math.max(0, Math.min(maxStore, Math.floor(store.water + foodRate - deductFromStore)))
   }
-
   return newStore
 }
 
@@ -175,12 +173,10 @@ export function addUpEffects(effects){
 
 export function calcEventEffects(event, reduxState){
   if(!event) return [];
-  let {ants, store, home} = reduxState
+  let {ants, store, home, choice} = reduxState
   let effect;
-  let value;
   if(event.type=== 'ant'){
     effect = Math.floor(ants[event.subtype]*event.number) - ants[event.subtype]
-    value = (effect>=0)? '+': '-';
   }
   if(event.type=== 'resource'){
     effect = event.number
@@ -188,11 +184,11 @@ export function calcEventEffects(event, reduxState){
   if(event.type=== 'store'){
     effect = Math.floor(store[event.subtype] * event.number - store[event.subtype])
   }
+  let number = (choice === "defend" && effect<0) ? Math.floor(effect/2): effect
   return {
     type: event.type,
     subtype: event.subtype,
-    value,
-    number: effect
+    number
   }
 }
 
@@ -223,4 +219,12 @@ export function applyEffectsToStatus(effects, status){
     }
   }
   return newStatus
+}
+
+export function packUpAndGo(store, ants){
+  let newStore = {
+    food: Math.min(store.food, ants.worker*15),
+    water: Math.min(store.water, ants.worker*15)
+  }
+  return newStore
 }

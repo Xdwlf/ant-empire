@@ -21,27 +21,28 @@ class Event extends Component{
     events.map(event=> story.push(event.description))
     const allEvents = (events)? compileEffects(events): []
     const allEffects = (allEvents.length>0)? allEvents.map(e=> calcEventEffects(e, this.props.reduxState)): []
-    //check game status of state
-      //if game over, add gameover paragraph
-
     this.props.updateAll(state)
     if(allEffects.length>0) this.props.setEvent(allEffects)
     this.setState({story})
   }
 
   componentWillUnmount(){
-    const updatedState = applyEffectsToStatus(this.props.reduxState.event, this.props.reduxState)
-    updatedState.event = []
-    this.props.updateAll(updatedState)
+    if(this.props.reduxState.status.every(s=> s===gStatus.HEALTHY || s===gStatus.THIRSTY ||
+                    s===gStatus.HUNGRY || s===gStatus.STARVING ||s===gStatus.DEHYDRATED)){
+      const updatedState = applyEffectsToStatus(this.props.reduxState.event, this.props.reduxState)
+      updatedState.event = []
+      this.props.updateAll(updatedState)
+      }
   }
 
   render(){
+    let {resetGame} = this.props
     let story = this.state.story.map((paragraph, idx)=> (
       <div key={idx}>{paragraph}</div>
     ))
-    let button = (this.props.reduxState.status.every(s=> s===gStatus.HEALTHY || s===gStatus.THIRSTY ||s===gStatus.HUNGRY || s===gStatus.STARVING ||s===gStatus.DEHYDRATED))?
-                        (<button onClick={()=> this.props.changePage('gameplay')}>Continue</button>): <button>Start Over</button>
-
+    let button = (this.props.reduxState.status.every(s=> s===gStatus.HEALTHY || s===gStatus.THIRSTY ||
+                    s===gStatus.HUNGRY || s===gStatus.STARVING ||s===gStatus.DEHYDRATED))?
+                        (<button onClick={()=> this.props.changePage('gameplay')}>Continue</button>): <button onClick={resetGame}>Start Over</button>
     return (
       <div>
         {story}

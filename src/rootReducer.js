@@ -1,4 +1,4 @@
-import {SET_HOME, UPDATE_FUEL, UPDATE_GAMESTATUS, UPDATE_CHOICE, UPDATE_ALL, SET_EVENT} from './actionCreators'
+import {SET_HOME, UPDATE_FUEL, SET_STORE, UPDATE_GAMESTATUS, UPDATE_CHOICE, UPDATE_ALL, SET_EVENT, RESET_STATE} from './actionCreators'
 import {gStatus} from './utils/gameHelpers'
 
 const initialState = {
@@ -9,8 +9,8 @@ const initialState = {
     worker: 0
   },
   store: {
-    food: 10,
-    water: 100
+    food: 150,
+    water: 150
   },
   fuel: 100,
   home: null,
@@ -22,6 +22,7 @@ const initialState = {
 }
 
 export default function rootReducer(state=initialState, action){
+  console.log(initialState)
   switch(action.type){
     case SET_HOME:
       return {
@@ -32,6 +33,11 @@ export default function rootReducer(state=initialState, action){
       return {
         ...state,
         fuel: action.fuel
+      }
+    case SET_STORE:
+      return {
+        ...state,
+        store: action.store
       }
     case UPDATE_GAMESTATUS:
       return{
@@ -51,6 +57,10 @@ export default function rootReducer(state=initialState, action){
       return{
         ...state,
         event: action.event
+      }
+    case RESET_STATE:
+      return{
+        ...initialState
       }
     default:
       return state;
