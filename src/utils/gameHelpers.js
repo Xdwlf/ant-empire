@@ -3,34 +3,31 @@ export function gameOver(reduxState){
   //check status
   let status = [...reduxState.status];
   if(reduxState.store.food === 0){
-    if(status.some(s=> s== gStatus.HUNGRY)){
-      status = status.map(s=>{
-        if(s=== gStatus.HUNGRY) return gStatus.STARVING
-      })
-      //apply effects to ants
-    }else if(status.some(s=> s== gStatus.STARVING)) {
-      status = status.map(s=>{
-        if(s=== gStatus.STARVING) return gStatus.DEATH_BY_STARVATION
-      })
+    if(status.some(s=> s=== gStatus.HUNGRY)){
+      status = status.map(s=> (s=== gStatus.HUNGRY) ? gStatus.STARVING: s)
+    }else if(status.some(s=> s=== gStatus.STARVING)) {
+      status = status.map(s=>(s=== gStatus.STARVING) ? gStatus.DEATH_BY_STARVATION:s
+      )
     }else{
       status = status.filter(s => s!== gStatus.HEALTHY);
       status = [...status, gStatus.HUNGRY]
     }
   }
   if(reduxState.store.water === 0){
-    if(status.some(s=> s== gStatus.THIRSTY)){
-      status = status.map(s=>{
-        if(s=== gStatus.THIRSTY) return gStatus.DEHYDRATED
-      })
-      //apply effects to ants
-    }else if(status.some(s=> s== gStatus.DEHYDRATED)) {
-      status = status.map(s=>{
-        if(s=== gStatus.DEHYDRATED) return gStatus.DEATH_BY_DEHYDRATION
-      })
+    if(status.some(s=> s=== gStatus.THIRSTY)){
+      status = status.map(s=> (s=== gStatus.THIRSTY) ? gStatus.DEHYDRATED: s)
+    }else if(status.some(s=> s=== gStatus.DEHYDRATED)) {
+      status = status.map(s=> (s=== gStatus.DEHYDRATED) ? gStatus.DEATH_BY_DEHYDRATION: s)
     }else{
       status = status.filter(s => s!== gStatus.HEALTHY);
       status = [...status, gStatus.THIRSTY]
     }
+  }
+  if(reduxState.store.water!==0){
+    status = status.filter(s=> (s!== gStatus.THIRSTY && s!== gStatus.DEHYDRATED))
+  }
+  if(reduxState.store.food!==0){
+    status = status.filter(s=> (s!== gStatus.HUNGRY && s!== gStatus.STARVING))
   }
 
   let narrative = status.map(s=> gameStatusNarratives[s])
@@ -41,8 +38,6 @@ export function gameOver(reduxState){
     }
   }
 }
-
-
 
 export const gStatus = {
   HEALTHY : "HEALTHY",

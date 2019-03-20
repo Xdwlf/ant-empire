@@ -55,7 +55,7 @@ export function generateEvent(reduxState){
     //log function
 
 export function calcNewStore(reduxState){
-  let baseRate = 5
+  let baseRate = 4
   let {ants, store, home} = reduxState;
   let maxStore = Math.max(200, ants.worker* 30)
   let waterRate = (1-(1/home.resources.water)) * ants.worker *baseRate;
@@ -73,9 +73,10 @@ export function calcNewStore(reduxState){
 export function calcCurrentAnts(reduxState, choice){
   let {ants, store} = reduxState;
   let bonus = (choice === "birth") ? 1.5: 1
-  let foodPercentage = Math.max(150, ants.worker * 20)/Math.max(1, store.food);
-  let waterPercentage = Math.max(150, ants.worker * 20)/Math.max(1,store.water);
+  let foodPercentage = Math.max(1, store.food)/Math.max(200, ants.worker * 30);
+  let waterPercentage = Math.max(1,store.water)/Math.max(200, ants.worker * 30);
   let storePercentage = (foodPercentage+ waterPercentage)/2
+  console.log(storePercentage)
   let newEggNum = Math.floor((storePercentage*Math.log(Math.max(1, ants.worker))*0.3+6)*bonus)
   let newAntNums = {
     eggs: Math.max(0, newEggNum),
@@ -207,14 +208,14 @@ export function applyEffectsToStatus(effects, status){
     }
     if(key === 'store'){
       types[key].map(effect=> {
-        newStatus.store = Object.assign({}, newStatus.store, {[effect.subtype]: Math.max(0, newStatus.store[effect.subtype] + effect.number)})
+        newStatus.store = Object.assign({}, newStatus.store, {[effect.subtype]: Math.max(0, newStatus.store[effect.subtype] + effect.number) })
       })
     }
     if(key === 'resource'){
       newStatus.home = {...status.home}
       types[key].map(effect=>{
         const resources = {...newStatus.home.resources}
-        newStatus.home.resources = Object.assign({}, resources, {[effect.subtype]: Math.max(1, resources[effect.subtype]+ effect.number)})
+        newStatus.home.resources = Object.assign({}, resources, {[effect.subtype]: Math.min(10, Math.max(1, resources[effect.subtype]+ effect.number))})
       } )
     }
   }

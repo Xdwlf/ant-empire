@@ -43,11 +43,7 @@ body, html{
   color: white
 }
 
-.sidebar{
-  flex-basis: 200px;
-  flex-grow: 2;
-  border: 2px solid pink
-}
+
 
 .mainscreen{
   flex-basis: 450px;
@@ -62,4 +58,47 @@ body, html{
 
 .fade-in{
   opacity: 1
+}
+
+.statusbar-enter{
+  opacity: 0.01
+}
+
+.statusbar-enter-active{
+  opacity: 1;
+  transition: all 2s
+}
+
+.fade-appear{
+  z-index: 1;
+  opacity: 0;
+}
+
+.fade-appear.fade-appear-active{
+  opacity: 1;
+  transition: opacity 500ms linear;
+}
+
+.fade-exit{
+  opacity: 1;
+  z-index: 0;
+}
+
+.fade-exit.fade-exit-active{
+  opacity: 0;
+  transition: opacity 500ms linear;
+}
+
+.fade-exit-done{
+  opacity: 0
+}
+
+.fade-enter{
+  opacity: 0;
+  z-index: 1;
+}
+
+.fade-enter.fade-enter-active{
+  opacity: 1;
+  transition: opacity 500ms linear 5000ms;
 }

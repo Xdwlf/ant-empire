@@ -7,6 +7,8 @@ import rootReducer from './rootReducer'
 import {createStore} from 'redux';
 import {Provider} from 'react-redux';
 import {BrowserRouter} from 'react-router-dom'
+import {CSSTransition} from 'react-transition-group'
+
 
 const store = createStore(rootReducer,
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())

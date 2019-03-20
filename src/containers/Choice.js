@@ -2,6 +2,9 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux'
 import generateHome from '../utils/GenerateHome'
 import {setHome, updateGameStatus} from '../actionCreators'
+import '../App.css'
+import './styles/Choice.css'
+import {CSSTransition} from 'react-transition-group'
 
 class Choice extends Component{
   constructor(props){
@@ -39,7 +42,16 @@ class Choice extends Component{
     ))
     return(
       <div>
-        <div>{story}</div>
+        {this.state.story.map((line, idx) => (
+          <CSSTransition
+            in={true}
+            appear={true}
+            key={idx}
+            timeout={500}
+            classNames='fade'>
+              <div> {line} </div>
+          </ CSSTransition>
+        ))}
       </div>
     )
   }

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {CSSTransition, TransitionGroup} from 'react-transition-group'
 import './App.css';
 import ColonyStatus from './components/ColonyStatus'
 import loadPage from './utils/LoadPage'
@@ -43,16 +44,31 @@ class App extends Component {
   render() {
     //logic to figure out which page to render
     let page = loadPage(this.state.page, this.changePage, this.setChoice, this.resetGame)
-    let status = (this.state.page !== 'enter' && this.state.page !== 'prequel') ?
-        (<div className='sidebar'> <ColonyStatus /> </div>): null
+    let isGamePlaying = (this.state.page !== 'enter' && this.state.page !== 'prequel')
     return (
       <div className="App">
-        <div className='mainscreen'>
-        {page}
+        <div className="mainscreen">
+            <CSSTransition
+              key={this.state.page}
+              in={true}
+              appear={true}
+              timeout={200}
+              classNames='fade'
+              unmountOnExit
+              >
+              {page}
+            </CSSTransition>
         </div>
-        {status}
+
+        {<CSSTransition in={isGamePlaying}
+          timeout={300}
+          classNames="fade"
+          unmountOnExit
+          >
+            <ColonyStatus key='statusbar' className="statusbar" />
+        </ CSSTransition>}
       </div>
-    );
+    )
   }
 }
 

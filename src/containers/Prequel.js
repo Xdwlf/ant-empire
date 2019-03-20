@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
+import '../App.css'
+import {CSSTransition, TransitionGroup} from 'react-transition-group'
 
-const narrative = ["You are a queen bee looking for a new home. After leaving your childhood home, you set out for a new life.",
+const narrative = ['', "You are a queen bee looking for a new home. After leaving your childhood home, you set out for a new life.",
 'You are looking for the best place to establish a new ant colony.']
 
 class Prequel extends Component{
@@ -31,7 +33,19 @@ class Prequel extends Component{
   render(){
     let divs = this.state.story.map((line,idx)=> <div key={idx}>{line}</div>)
     return (<div>
-      {divs}
+      {this.state.story.map((line,idx)=> (
+        <CSSTransition
+          in={true}
+          appear={true}
+          key={idx}
+          timeout={500}
+          classNames="fade"
+        >
+          <div key={idx}>{line}</div>
+        </CSSTransition>
+      ))
+      }
+
       </div>)
   }
 }

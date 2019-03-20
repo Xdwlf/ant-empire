@@ -9,12 +9,12 @@ import Event from '../containers/Event'
 
 export default function loadPage(page, callback, callback2, callback3){
   const pages = {
-    enter: <Enter changePage={callback} />,
-    prequel: <Prequel changePage={callback} />,
-    choice: <Choice changePage={callback} />,
-    searching: <Searching changePage={callback} />,
-    gameplay: <Gameplay changePage={callback} setChoice={callback2}/>,
-    event: <Event changePage={callback} resetGame={callback3}/>
+    enter: <Enter key={page} changePage={callback} />,
+    prequel: <Prequel key={page} changePage={callback} />,
+    choice: <Choice key={page} changePage={callback} />,
+    searching: <Searching key={page} changePage={callback} />,
+    gameplay: <Gameplay key={page} changePage={callback} setChoice={callback2}/>,
+    event: <Event key={page} changePage={callback} resetGame={callback3}/>
     }
   return pages[page]
 }
