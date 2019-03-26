@@ -1,9 +1,26 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
+import {shallow} from 'enzyme'
+import {App} from './App';
 
-it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<App />, div);
-  ReactDOM.unmountComponentAtNode(div);
-});
+import {findByTestAttr} from './test/testUtils'
+
+const defaultState = {
+  page: 'enter'
+}
+
+const setup = (props={}) =>{
+  return shallow(<App {...props}/>)
+}
+
+describe('app component', ()=>{
+  let wrapper;
+  beforeEach(()=>{
+    wrapper = setup()
+  })
+  test('renders without crashing', () => {
+    const component = findByTestAttr(wrapper, 'component-app')
+    expect(component.length).toBe(1)
+  });
+
+})

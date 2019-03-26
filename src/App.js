@@ -7,7 +7,7 @@ import {packUpAndGo} from './utils/generateEvent'
 import {updateChoice, setHome, resetState, setStore} from './actionCreators'
 import {connect} from 'react-redux';
 
-class App extends Component {
+export class App extends Component {
   constructor(props){
     super(props);
     this.state={
@@ -46,7 +46,7 @@ class App extends Component {
     let page = loadPage(this.state.page, this.changePage, this.setChoice, this.resetGame)
     let isGamePlaying = (this.state.page !== 'enter' && this.state.page !== 'prequel')
     return (
-      <div className="App">
+      <div className="App" data-test="component-app">
         <div className="mainscreen">
             <CSSTransition
               key={this.state.page}
