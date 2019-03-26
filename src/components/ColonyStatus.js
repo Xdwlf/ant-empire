@@ -7,7 +7,7 @@ import AntCount from './AntCount'
 import ResourceCount from './ResourceCount'
 import StoreCount from './StoreCount'
 
-class ColonyStatus extends Component{
+export class ColonyStatus extends Component{
   constructor(props){
     super(props);
   }
@@ -16,8 +16,7 @@ class ColonyStatus extends Component{
     let antEvents = event.filter(effect=> effect.type==='ant')
     let resourceEvents = event.filter(effect=> effect.type==='resource')
     let storeEvents = event.filter(effect=> effect.type==='store')
-
-    return(<div className="sidebar"><h4>Status Bar</h4>
+    return(<div className="sidebar" data-test="component-colony-status" ><h4>Status Bar</h4>
       <div>
         <div>
           <AntCount ants={ants} eventEffect={ antEvents} reduxState={this.props.state}/>

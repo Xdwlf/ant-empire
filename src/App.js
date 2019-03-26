@@ -54,19 +54,21 @@ export class App extends Component {
               appear={true}
               timeout={200}
               classNames='fade'
+              data-test={this.state.page}
               unmountOnExit
               >
               {page}
             </CSSTransition>
         </div>
 
-        {<CSSTransition in={isGamePlaying}
-          timeout={300}
-          classNames="fade"
-          unmountOnExit
-          >
-            <ColonyStatus key='statusbar' className="statusbar" />
-        </ CSSTransition>}
+          <CSSTransition in={isGamePlaying}
+              timeout={300}
+              classNames="fade"
+              unmountOnExit
+              >
+                <ColonyStatus key='statusbar' className="statusbar"/>
+          </ CSSTransition>
+
       </div>
     )
   }
