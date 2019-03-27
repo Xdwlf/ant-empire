@@ -21,11 +21,13 @@ export class ColonyStatus extends Component{
         <div>
           <AntCount ants={ants} eventEffect={ antEvents} reduxState={this.props.state}/>
         </div>
+        <div>
+          <StoreCount eventEffect={storeEvents} store={store} />
+        </div>
         {(home)? (
           <div>
             <div>Your Home: <span data-test="home-description">{(home)? home.description: null}</span></div>
             <ResourceCount eventEffect={resourceEvents} resources={(home) ? home.resources: null}/>
-            <StoreCount eventEffect={storeEvents} store={store} />
             <h4>Weather: <span data-test="weather-description">{(home)? home.weather.temperature.desc + ' and ' + home.weather.humidity.desc:null}</span></h4>
           </div>):null
         }
