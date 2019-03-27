@@ -1,8 +1,8 @@
 import React from 'react';
 import {shallow} from 'enzyme';
-import ResourceCount from './ResourceCount'
+import ResourceCount from '../ResourceCount'
 
-import {findByTestAttr} from '../test/testUtils'
+import {findByTestAttr} from '../../test/testUtils'
 
 const defaultProps = {
   eventEffect: [],

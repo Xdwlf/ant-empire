@@ -1,8 +1,8 @@
 import React from 'react'
 import {shallow} from 'enzyme'
-import AntCount from './AntCount'
+import AntCount from '../AntCount'
 
-import {findByTestAttr} from '../test/testUtils'
+import {findByTestAttr} from '../../test/testUtils'
 
 const defaultProps = {
   ants: {

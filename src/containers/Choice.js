@@ -6,7 +6,7 @@ import '../App.css'
 import './styles/Choice.css'
 import {CSSTransition} from 'react-transition-group'
 
-class Choice extends Component{
+export class Choice extends Component{
   constructor(props){
     super(props)
     this.state={
@@ -35,13 +35,12 @@ class Choice extends Component{
     this.props.changePage('gameplay')
   }
 
-
   render(){
     let story = this.state.story.map((line, idx) => (
       <div key={idx}> {line} </div>
     ))
     return(
-      <div>
+      <div data-test="component-choice">
         {this.state.story.map((line, idx) => (
           <CSSTransition
             in={true}
@@ -49,7 +48,7 @@ class Choice extends Component{
             key={idx}
             timeout={500}
             classNames='fade'>
-              <div> {line} </div>
+              <div > {line} </div>
           </ CSSTransition>
         ))}
       </div>
