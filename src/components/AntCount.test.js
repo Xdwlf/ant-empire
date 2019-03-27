@@ -19,7 +19,7 @@ const setup = (props={}) => {
   return shallow(<AntCount {...newProps} />)
 }
 
-test('renders without error', ()=>{
+test('<AntCount /> renders without error', ()=>{
   const wrapper = setup()
   const component = findByTestAttr(wrapper, 'component-ant-count')
   expect(component.length).toBe(1)

@@ -12,7 +12,7 @@ export class ColonyStatus extends Component{
     super(props);
   }
   render(){
-    let {event, ants, home, store, fuel} = this.props.state
+    let {event, ants, home, store} = this.props.state
     let antEvents = event.filter(effect=> effect.type==='ant')
     let resourceEvents = event.filter(effect=> effect.type==='resource')
     let storeEvents = event.filter(effect=> effect.type==='store')
@@ -21,12 +21,15 @@ export class ColonyStatus extends Component{
         <div>
           <AntCount ants={ants} eventEffect={ antEvents} reduxState={this.props.state}/>
         </div>
-        <div>
-          <div>Your Home: {(home)? home.description: null}</div>
-          <ResourceCount eventEffect={resourceEvents} resources={(home) ? home.resources: null}/>
-          <StoreCount eventEffect={storeEvents} store={store} />
-          <h4>Weather: {(home)? home.weather.temperature.desc + ' and ' + home.weather.humidity.desc:null}</h4>
-        </div>
+        {(home)? (
+          <div>
+            <div>Your Home: <span data-test="home-description">{(home)? home.description: null}</span></div>
+            <ResourceCount eventEffect={resourceEvents} resources={(home) ? home.resources: null}/>
+            <StoreCount eventEffect={storeEvents} store={store} />
+            <h4>Weather: <span data-test="weather-description">{(home)? home.weather.temperature.desc + ' and ' + home.weather.humidity.desc:null}</span></h4>
+          </div>):null
+        }
+
       </div>
       </div>)
   }
