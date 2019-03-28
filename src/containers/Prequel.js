@@ -32,20 +32,20 @@ class Prequel extends Component{
   }
   render(){
     let divs = this.state.story.map((line,idx)=> <div key={idx}>{line}</div>)
-    return (<div>
-      {this.state.story.map((line,idx)=> (
-        <CSSTransition
-          in={true}
-          appear={true}
-          key={idx}
-          timeout={500}
-          classNames="fade"
-        >
-          <div key={idx}>{line}</div>
-        </CSSTransition>
-      ))
-      }
-
+    return (
+      <div data-test="component-prequel">
+        {this.state.story.map((line,idx)=> (
+          <CSSTransition
+            in={true}
+            appear={true}
+            key={idx}
+            timeout={500}
+            classNames="fade"
+          >
+            <div key={idx}>{line}</div>
+          </CSSTransition>
+        ))
+        }
       </div>)
   }
 }

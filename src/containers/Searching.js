@@ -3,7 +3,7 @@ import {setStore, updateChoice} from '../actionCreators'
 import {calculateStoreDeductionForTravel} from '../utils/travellingUtils'
 import {connect} from 'react-redux'
 
-class Searching extends Component{
+export class Searching extends Component{
   constructor(props){
     super(props)
   }
@@ -21,7 +21,7 @@ class Searching extends Component{
       change = "Your entire colony packs up and brings what they can as you search for a new home."
       this.props.updateChoice(null)
     }
-    return (<div>
+    return (<div data-test="component-searching">
       {change}
       Searching...
       </div>

@@ -12,9 +12,9 @@ class Enter extends Component{
         appear={true}
         timeout={500}
         classNames="fade">
-        <div className="enter-container">
+        <div className="enter-container" data-test="component-enter">
           <h1>Welcome to the Ant Empire.</h1>
-          <button className='ui button' onClick={()=> changePage('prequel')}>Enter</button>
+          <button data-test="enter-button" className='ui button' onClick={()=> changePage('prequel')}>Enter</button>
         </div>
       </CSSTransition>
     )

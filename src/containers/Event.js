@@ -4,7 +4,7 @@ import {generateEvent, describeChoice, compileEffects, applyEffectsToStatus, cal
 import {updateAll, setEvent} from '../actionCreators'
 import {gStatus} from '../utils/gameHelpers'
 
-class Event extends Component{
+export class Event extends Component{
   constructor(props){
     super(props)
     this.state = {
@@ -42,9 +42,9 @@ class Event extends Component{
     ))
     let button = (this.props.reduxState.status.every(s=> s===gStatus.HEALTHY || s===gStatus.THIRSTY ||
                     s===gStatus.HUNGRY || s===gStatus.STARVING ||s===gStatus.DEHYDRATED))?
-                        (<button onClick={()=> this.props.changePage('gameplay')}>Continue</button>): <button onClick={resetGame}>Start Over</button>
+                        (<button data-test="continue-button" onClick={()=> this.props.changePage('gameplay')}>Continue</button>): <button onClick={resetGame}>Start Over</button>
     return (
-      <div>
+      <div data-test="component-event">
         {story}
         {button}
       </div>
