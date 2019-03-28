@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {generateEvent} from '../utils/event'
 import {describeChoice} from '../utils/event/choice'
-import {compileEffects, applyEffectsToStatus, calcEventEffects} from '../utils/event/effect'
+import {compileEffects, applyEffectsToStatus, calcEventEffects} from '../utils/effect'
 import {updateAll, setEvent} from '../actionCreators'
 import {gStatus} from '../utils/general/status'
 

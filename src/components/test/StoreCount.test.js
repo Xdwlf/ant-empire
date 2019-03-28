@@ -14,7 +14,6 @@ const defaultProps = {
 
 const setup = (props={}) => {
   const newProps = Object.assign({}, defaultProps, props)
-  console.log(newProps)
   return shallow(<StoreCount {...newProps}/>)
 }
 
@@ -71,7 +70,6 @@ describe('when effects passed into <StoreCount />', ()=>{
   })
   test('water-effects renders correct effect', ()=>{
     const waterEffect = findByTestAttr(wrapper, 'water-effect')
-    console.log(wrapper.debug())
     expect(waterEffect.text()).toContain(24)
   })
 })

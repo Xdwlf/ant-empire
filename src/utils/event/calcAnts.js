@@ -1,4 +1,5 @@
 export function calcCurrentAnts(reduxState, choice){
+  if(!reduxState) return resetAnts
   let {ants, store} = reduxState;
   let bonus = (choice === "birth") ? 1.5: 1
   let foodPercentage = Math.max(1, store.food)/Math.max(200, ants.worker * 30);
@@ -12,4 +13,11 @@ export function calcCurrentAnts(reduxState, choice){
     worker: Math.max(ants.worker + ants.pupae, 0)
   }
   return newAntNums;
+}
+
+const resetAnts= {
+  worker: 0,
+  pupae: 0,
+  larvae: 0,
+  eggs: 0
 }

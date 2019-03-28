@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {addUpEffects} from '../utils/event/effect'
+import {addUpEffects} from '../utils/effect'
 
 class ResourceCount extends Component {
 
