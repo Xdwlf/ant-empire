@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import {CSSTransition, TransitionGroup} from 'react-transition-group'
+import {CSSTransition} from 'react-transition-group'
 import './App.css';
 import ColonyStatus from './components/ColonyStatus'
-import loadPage from './utils/LoadPage'
-import {packUpAndGo} from './utils/generateEvent'
+import loadPage from './utils/general/loadPage'
+import {packUpAndGo} from './utils/travel'
 import {updateChoice, setHome, resetState, setStore} from './actionCreators'
 import {connect} from 'react-redux';
 

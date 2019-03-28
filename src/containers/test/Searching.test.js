@@ -3,7 +3,7 @@ import {shallow} from 'enzyme';
 import {Searching} from '../Searching'
 
 import {findByTestAttr} from '../../test/testUtils'
-import {gStatus} from '../../utils/gameHelpers'
+import {gStatus} from '../../utils/general/status'
 
 const defaultReduxState = {
   state:{

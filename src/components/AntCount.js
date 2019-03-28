@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {addUpEffects, calcEventEffects} from '../utils/generateEvent'
+import {addUpEffects} from '../utils/event/effect'
 
 class AntCount extends Component{
   constructor(props){

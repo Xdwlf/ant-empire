@@ -1,11 +1,9 @@
 import React, {Component} from 'react';
-import {addUpEffects} from '../utils/generateEvent'
+import {addUpEffects} from '../utils/event/effect'
 
 
 class StoreCount extends Component{
-  constructor(props){
-    super(props)
-  }
+
   render(){
     let {store, eventEffect} = this.props;
     const waterEffect = addUpEffects(eventEffect.filter(event => event.subtype === "water"))

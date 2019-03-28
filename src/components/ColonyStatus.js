@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {calcEventEffects, compileEffects} from '../utils/generateEvent'
 import '../App.css'
 import './styles/ColonyStatus.css'
 import AntCount from './AntCount'
@@ -8,9 +7,7 @@ import ResourceCount from './ResourceCount'
 import StoreCount from './StoreCount'
 
 export class ColonyStatus extends Component{
-  constructor(props){
-    super(props);
-  }
+
   render(){
     let {event, ants, home, store} = this.props.state
     let antEvents = event.filter(effect=> effect.type==='ant')

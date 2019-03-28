@@ -1,7 +1,7 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 import {Choice} from '../Choice'
-import {gStatus} from '../../utils/gameHelpers'
+import {gStatus} from '../../utils/general/status'
 
 import {findByTestAttr} from '../../test/testUtils'
 

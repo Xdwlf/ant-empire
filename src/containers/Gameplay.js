@@ -1,9 +1,7 @@
 import React, {Component} from 'react'
 
 class Gameplay extends Component{
-  constructor(props){
-    super(props)
-  }
+
   render(){
     let {setChoice} = this.props
     return (

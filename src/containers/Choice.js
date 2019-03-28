@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux'
-import generateHome from '../utils/GenerateHome'
+import generateHome from '../utils/home'
 import {setHome, updateGameStatus} from '../actionCreators'
 import '../App.css'
 import './styles/Choice.css'

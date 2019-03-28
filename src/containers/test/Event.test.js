@@ -1,7 +1,7 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 import {Event} from '../Event'
-import {gStatus} from '../../utils/gameHelpers'
+import {gStatus} from '../../utils/general/status'
 
 import {findByTestAttr} from '../../test/testUtils'
 

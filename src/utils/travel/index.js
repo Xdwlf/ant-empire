@@ -9,3 +9,11 @@ export function calculateStoreDeductionForTravel(reduxState){
   }
   return newStore
 }
+
+export function packUpAndGo(store, ants){
+  let newStore = {
+    food: Math.min(store.food, ants.worker*15),
+    water: Math.min(store.water, ants.worker*15)
+  }
+  return newStore
+}

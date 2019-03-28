@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import '../App.css'
-import {CSSTransition, TransitionGroup} from 'react-transition-group'
+import {CSSTransition} from 'react-transition-group'
 
 const narrative = ['', "You are a queen bee looking for a new home. After leaving your childhood home, you set out for a new life.",
 'You are looking for the best place to establish a new ant colony.']

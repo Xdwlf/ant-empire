@@ -1,10 +1,8 @@
 import React, {Component} from 'react';
-import {addUpEffects} from '../utils/generateEvent'
+import {addUpEffects} from '../utils/event/effect'
 
 class ResourceCount extends Component {
-  constructor(props){
-    super(props)
-  }
+
   render(){
     let {eventEffect, resources} = this.props
     let foodEffects = addUpEffects(eventEffect.filter(event=> event.subtype=== 'food'))

@@ -1,8 +1,10 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {generateEvent, describeChoice, compileEffects, applyEffectsToStatus, calcEventEffects} from '../utils/generateEvent'
+import {generateEvent} from '../utils/event'
+import {describeChoice} from '../utils/event/choice'
+import {compileEffects, applyEffectsToStatus, calcEventEffects} from '../utils/event/effect'
 import {updateAll, setEvent} from '../actionCreators'
-import {gStatus} from '../utils/gameHelpers'
+import {gStatus} from '../utils/general/status'
 
 export class Event extends Component{
   constructor(props){

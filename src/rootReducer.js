@@ -1,5 +1,5 @@
 import {SET_HOME, UPDATE_FUEL, SET_STORE, UPDATE_GAMESTATUS, UPDATE_CHOICE, UPDATE_ALL, SET_EVENT, RESET_STATE} from './actionCreators'
-import {gStatus} from './utils/gameHelpers'
+import {gStatus} from './utils/general/status'
 
 const initialState = {
   ants: {
@@ -22,7 +22,6 @@ const initialState = {
 }
 
 export default function rootReducer(state=initialState, action){
-  console.log(initialState)
   switch(action.type){
     case SET_HOME:
       return {

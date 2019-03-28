@@ -1,12 +1,10 @@
 import React, {Component} from 'react';
 import {setStore, updateChoice} from '../actionCreators'
-import {calculateStoreDeductionForTravel} from '../utils/travellingUtils'
+import {calculateStoreDeductionForTravel} from '../utils/travel'
 import {connect} from 'react-redux'
 
 export class Searching extends Component{
-  constructor(props){
-    super(props)
-  }
+
   componentWillUnmount(){
     //remove from store
     let updatedStore = calculateStoreDeductionForTravel(this.props.state)
