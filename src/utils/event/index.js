@@ -40,7 +40,6 @@ export function rollEvents(reduxState){
   const disasters = []
   //rolls for each if rolls high, good thing
   //rolls for each if rolls low, disaster
-
   //temperature events
   let rollTemp = 100/(10-home.weather.temperature.risk)
   if(Math.random()*100<= rollTemp){

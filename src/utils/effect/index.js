@@ -5,11 +5,12 @@ export function compileEffects(events){
 }
 
 export function addUpEffects(effects){
+  if(!effects) return 0
   return effects.reduce((accum, effect)=> accum+effect.number, 0)
 }
 
 export function calcEventEffects(event, reduxState){
-  if(!event) return [];
+  if(!event) return {};
   let {ants, store, home, choice} = reduxState
   let effect;
   if(event.type=== 'ant'){

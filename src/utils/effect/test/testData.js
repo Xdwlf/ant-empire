@@ -33,3 +33,18 @@ export const expectedEffects = [
     subtype: "eggs",
     number: 0.3
   }]
+
+export const testEffects = [
+  {type: "ant",
+    subtype: 'larvae',
+    number: 30},
+  {type: "resource",
+    subtype: 'food',
+    number: 80},
+  {type: "store",
+    subtype: 'water',
+    number: -10},
+  {type: "ant",
+    subtype: "eggs",
+    number: 5
+  }]
