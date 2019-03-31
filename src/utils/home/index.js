@@ -30,8 +30,11 @@ export default function generateHome(){
   let humid = selectRandomfromArray(descriptions.humidity)
   let environ = selectRandomfromArray(descriptions.environment)
   let home = selectRandomfromArray(descriptions.home)
+  let anirisk = selectRandomfromArray(descriptions.animal)
   let hrisk = selectRandomfromArray(descriptions.human)
-  let newHome = {description: [`A ${humid.desc} and ${temp.desc} in a ${home} ${environ}, ${hrisk.desc}`],
+  let arisk = selectRandomfromArray(descriptions.ant)
+  const story = [temp.story.concat(humid.story, environ.story), anirisk.story.concat(hrisk.story, arisk.story), home.story]
+  let currentHome = {description: [`A ${humid.desc} and ${temp.desc} in a ${home.desc} ${environ.desc}.`],
       resources: {
         food: temp.resource,
         water: humid.resource
@@ -39,14 +42,23 @@ export default function generateHome(){
       risk: {
         human: hrisk.risk,
         animal: 5,
-        ant: 5
+        ant: arisk.risk
       },
       weather: {
-        temperature: temp,
-        humidity: humid
+        temperature: {
+          desc: temp.desc,
+          risk: temp.risk
+        },
+        humidity: {
+          desc: humid.desc,
+          risk: humid.risk
+        }
       }
 
   }
-  return newHome
+  return {
+    story,
+    currentHome
+  }
 
 }

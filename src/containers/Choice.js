@@ -16,9 +16,9 @@ export class Choice extends Component{
     this.selectHome = this.selectHome.bind(this)
   }
   componentWillMount(){
-    let currentHome = generateHome()
+    let {story, currentHome} = generateHome()
     let beginning = ["You have wandered upon a new area."]
-    let newHomeDesc = beginning.concat(currentHome.description).concat([<div>
+    let newHomeDesc = beginning.concat(story).concat([<div>
               <button onClick={()=> this.props.changePage('searching')}>Keep Looking</button>
               <button onClick={()=>{this.selectHome(this.state.currentHome)}}>Settle Down</button>
             </div>])
@@ -37,7 +37,7 @@ export class Choice extends Component{
 
   render(){
     let story = this.state.story.map((line, idx) => (
-      <div key={idx}> {line} </div>
+      <div className="story" key={idx}> {line} </div>
     ))
     return(
       <div data-test="component-choice">
