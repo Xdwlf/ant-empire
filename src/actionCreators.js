@@ -6,6 +6,7 @@ export const UPDATE_CHOICE = 'UPDATE_CHOICE'
 export const UPDATE_ALL = "UPDATE_ALL"
 export const SET_EVENT = "SET_EVENT"
 export const RESET_STATE = "RESET_STATE"
+export const UPDATE_NOTIFICATION = "UPDATE_NOTIFICATION"
 
 export function setHome(home){
   return {
@@ -59,5 +60,12 @@ export function setEvent(event){
 export function resetState(){
   return{
     type: RESET_STATE
+  }
+}
+
+export function updateNotification(notification){
+  return{
+    type: RESET_STATE,
+    notification
   }
 }

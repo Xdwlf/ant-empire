@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux'
 import generateHome from '../utils/home'
-import {setHome, updateGameStatus} from '../actionCreators'
+import {setHome, updateGameStatus, updateAll} from '../actionCreators'
+import {gameOver} from '../utils/general/gameHelpers'
+import {decideIfGameIsPlaying} from '../utils/general/general'
 import '../App.css'
 import './styles/Choice.css'
 import {CSSTransition} from 'react-transition-group'
@@ -9,15 +11,28 @@ import {CSSTransition} from 'react-transition-group'
 export class Choice extends Component{
   constructor(props){
     super(props)
+    const {narrative} = gameOver(this.props.state)
     this.state={
       story:[],
+      statusNarrative: narrative,
       currentHome: null
     }
     this.selectHome = this.selectHome.bind(this)
+    this.generateHomeAndNarrative = this.generateHomeAndNarrative.bind(this)
+    this.updateGameStatus = this.updateGameStatus.bind(this)
   }
   componentWillMount(){
+    this.updateGameStatus()
+    this.generateHomeAndNarrative()
+  }
+
+  componentWillUnmount(){
+    clearInterval(this.interval)
+  }
+
+  generateHomeAndNarrative(){
     let {story, currentHome} = generateHome()
-    let beginning = ["You have wandered upon a new area."]
+    let beginning = [this.state.statusNarrative, "You have wandered upon a new area."]
     let newHomeDesc = beginning.concat(story).concat([<div>
               <button onClick={()=> this.props.changePage('searching')}>Keep Looking</button>
               <button onClick={()=>{this.selectHome(this.state.currentHome)}}>Settle Down</button>
@@ -26,8 +41,14 @@ export class Choice extends Component{
     this.interval = setInterval(()=> this.setState({story: [...this.state.story, newHomeDesc.splice(0, 1)]}), 1500)
   }
 
-  componentWillUnmount(){
-    clearInterval(this.interval)
+  updateGameStatus(){
+    //determines if status effects should be applied or if game should be over
+    const {newState} = gameOver(this.props.state)
+    const updatedNotification = decideIfGameIsPlaying(newState.status)
+    const updatedState = Object.assign({}, newState, updatedNotification)
+    //updates the redux state to reflect changes
+    this.props.updateAll(updatedState)
+
   }
 
   selectHome(home){
@@ -41,16 +62,18 @@ export class Choice extends Component{
     ))
     return(
       <div data-test="component-choice">
-        {this.state.story.map((line, idx) => (
-          <CSSTransition
-            in={true}
-            appear={true}
-            key={idx}
-            timeout={500}
-            classNames='fade'>
-              <div > {line} </div>
-          </ CSSTransition>
-        ))}
+        {(this.props.state.game)?
+          this.state.story.map((line, idx) => (
+            <CSSTransition
+              in={true}
+              appear={true}
+              key={idx}
+              timeout={500}
+              classNames='fade'>
+                <div > {line} </div>
+            </ CSSTransition>
+          )) :null}
+
       </div>
     )
   }
@@ -58,8 +81,8 @@ export class Choice extends Component{
 
 function mapStateToProps(reduxState){
   return {
-    ...reduxState
+    state: {...reduxState}
   }
 }
 
-export default connect(mapStateToProps, {setHome, updateGameStatus})(Choice)
+export default connect(mapStateToProps, {setHome, updateGameStatus, updateAll})(Choice)

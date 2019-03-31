@@ -1,4 +1,4 @@
-import {SET_HOME, UPDATE_FUEL, SET_STORE, UPDATE_GAMESTATUS, UPDATE_CHOICE, UPDATE_ALL, SET_EVENT, RESET_STATE} from './actionCreators'
+import {SET_HOME, UPDATE_FUEL, SET_STORE, UPDATE_GAMESTATUS, UPDATE_CHOICE, UPDATE_ALL, SET_EVENT, RESET_STATE, UPDATE_NOTIFICATION} from './actionCreators'
 import {gStatus} from './utils/general/status'
 
 const initialState = {
@@ -9,9 +9,10 @@ const initialState = {
     worker: 0
   },
   store: {
-    food: 150,
-    water: 150
+    food: 10,
+    water: 10
   },
+  notification: null,
   fuel: 100,
   home: null,
   page: 'enter',
@@ -60,6 +61,11 @@ export default function rootReducer(state=initialState, action){
     case RESET_STATE:
       return{
         ...initialState
+      }
+    case UPDATE_NOTIFICATION:
+      return {
+        ...state,
+        notification: action.notification
       }
     default:
       return state;

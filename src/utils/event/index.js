@@ -1,4 +1,4 @@
-import {selectRandomfromArray, randomIntFromInterval} from '../general/general'
+import {selectRandomfromArray, randomIntFromInterval, decideIfGameIsPlaying} from '../general/general'
 import {gameOver} from '../general/gameHelpers'
 import {calcNewStore} from './calcStore'
 import {calcCurrentAnts} from './calcAnts'
@@ -25,11 +25,12 @@ export function generateEvent(reduxState){
     ...state, ants: updatedAnts, store: updatedStore
   })
   //if gameover, add description to end of narrative
+  let {game, notification} = decideIfGameIsPlaying(newState.status)
   return {
     narrative,
     events,
     state: Object.assign({}, {
-      ...newState, ants: updatedAnts, store: updatedStore
+      ...newState, ants: updatedAnts, store: updatedStore, notification, game
     })
   }
   //return new object

@@ -1,0 +1,13 @@
+#notification{
+  display: block;
+  border: black;
+  z-index: 2;
+  position: absolute;
+  margin: auto;
+  margin-top: 9%;
+  border: 2px solid teal;
+  padding: 30px;
+  min-width: 400px;
+  min-height: 400px;
+  background-color: rgba(255, 0, 0, 0.3);
+}

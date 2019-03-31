@@ -1,5 +1,5 @@
 export const gameStatusNarratives = {
-  HEALTHY: "Your colony is healthy and thriving.",
+  HEALTHY: "",
   HUNGRY : "Your colony is hungry. If you do not find more food soon, your colony will die.",
   THIRSTY : "Your colony is thirsty. If you do not find more water soon, your colony will die.",
   STARVING: "Your ants are STARVING! Some of your ants have died from starvation and the rest will follow soon.",

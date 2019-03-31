@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import {CSSTransition} from 'react-transition-group'
 import './App.css';
 import ColonyStatus from './components/ColonyStatus'
+import Notification from './components/Notification'
 import loadPage from './utils/general/loadPage'
 import {packUpAndGo} from './utils/travel'
-import {updateChoice, setHome, resetState, setStore} from './actionCreators'
+import {updateChoice, setHome, resetState, setStore, updateNotification} from './actionCreators'
 import {connect} from 'react-redux';
 
 export class App extends Component {
@@ -25,7 +26,6 @@ export class App extends Component {
   setChoice(choice){
     this.props.updateChoice(choice)
     if(choice === 'change'){
-      //set fuel and stores
       this.props.setHome(null)
       //redirects to searching
       this.props.setStore(packUpAndGo(this.props.store, this.props.ants))
@@ -47,6 +47,15 @@ export class App extends Component {
     let isGamePlaying = (this.state.page !== 'enter' && this.state.page !== 'prequel')
     return (
       <div className="App" data-test="component-app">
+        <CSSTransition in={this.props.notification}
+          appear={true}
+          timeout={200}
+          classNames='fade'
+          unmountOnExit>
+            <Notification notification={this.props.notification}
+              updateNotification={this.props.updateNotification}
+              resetGame={this.resetGame}/>
+        </CSSTransition>
         <div className="mainscreen">
             <CSSTransition
               key={this.state.page}
@@ -62,7 +71,7 @@ export class App extends Component {
         </div>
 
           <CSSTransition in={isGamePlaying}
-              timeout={300}
+              timeout={5}
               classNames="fade"
               unmountOnExit
               >
@@ -80,4 +89,4 @@ function mapStateToProps(reduxState){
   }
 }
 
-export default connect(mapStateToProps, {updateChoice, setHome, resetState, setStore})(App);
+export default connect(mapStateToProps, {updateChoice, setHome, resetState, setStore, updateNotification})(App);

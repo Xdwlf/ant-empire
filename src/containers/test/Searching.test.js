@@ -29,7 +29,7 @@ const defaultReduxState = {
 
 const setup = (props) => {
   const newProps = Object.assign({}, defaultReduxState, props)
-  return shallow(<Searching {...newProps}/>)
+  return shallow(<Searching {...newProps} updateChoice={()=>null}/>)
 }
 
 test('<Searching /> renders without error', ()=>{

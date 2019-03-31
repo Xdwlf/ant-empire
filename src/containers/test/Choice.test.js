@@ -26,8 +26,8 @@ const defaultReduxState={
 }
 
 const setup = (props) => {
-  const newProps= Object.assign({}, defaultReduxState, props)
-  return shallow(<Choice {...newProps} />)
+  const newProps= Object.assign({}, {state: defaultReduxState}, props)
+  return shallow(<Choice {...newProps} updateAll={()=>null} />)
 }
 
 test('<Choice /> renders without error', ()=>{

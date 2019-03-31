@@ -3,7 +3,6 @@ import {gStatus} from './status'
 import {gameStatusNarratives} from './narrative'
 
 export function gameOver(reduxState){
-
   let status = [...reduxState.status];
   if(reduxState.store.food === 0){
     if(status.some(s=> s=== gStatus.HUNGRY)){

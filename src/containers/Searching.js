@@ -4,6 +4,13 @@ import {calculateStoreDeductionForTravel} from '../utils/travel'
 import {connect} from 'react-redux'
 
 export class Searching extends Component{
+  constructor(props){
+    super(props)
+    this.state={
+      choice: this.props.state.choice
+    }
+    this.props.updateChoice(null)
+  }
 
   componentWillUnmount(){
     //remove from store
@@ -14,14 +21,13 @@ export class Searching extends Component{
     setTimeout(()=>{
       this.props.changePage('choice')
     },3000)
-    let change = null;
-    if(this.props.state.choice === "change"){
+    let change;
+    if(this.state.choice === "change"){
       change = "Your entire colony packs up and brings what they can as you search for a new home."
-      this.props.updateChoice(null)
     }
     return (<div data-test="component-searching">
-      {change}
-      Searching...
+      <div> {change} </div>
+      <div> Searching... </div>
       </div>
 
     )
