@@ -45,10 +45,11 @@ export class Event extends Component{
     let button = (this.props.reduxState.status.every(s=> s===gStatus.HEALTHY || s===gStatus.THIRSTY ||
                     s===gStatus.HUNGRY || s===gStatus.STARVING ||s===gStatus.DEHYDRATED))?
                         (<button data-test="continue-button" onClick={()=> this.props.changePage('gameplay')}>Continue</button>): <button onClick={resetGame}>Start Over</button>
+    let content = (this.props.reduxState.game) ? (<div>
+            {story} {button}</div>)  : null
     return (
       <div data-test="component-event">
-        {story}
-        {button}
+        {content}
       </div>
     )
   }

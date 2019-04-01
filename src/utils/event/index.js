@@ -61,25 +61,30 @@ export function rollEvents(reduxState){
   let rollAnimal = 100/(10-home.risk.animal)
   if(Math.random()*100 <= rollAnimal){
     let eventID = selectRandomfromArray(categories.animal);
-    let newEvent = eventsData.humidity.filter(event=> event.id ===eventID)[0];
+    let newEvent = eventsData.animal.filter(event=> event.id ===eventID)[0];
     disasters.push(newEvent)
   }
+  console.log("animal", disasters)
+
 
   //human related events
   let rollHuman = 100/(10-home.risk.human)
   if(Math.random()*100 <= rollHuman){
     let eventID = selectRandomfromArray(categories.human);
-    let newEvent = eventsData.humidity.filter(event=> event.id === eventID)[0];
+    let newEvent = eventsData.human.filter(event=> event.id === eventID)[0];
     disasters.push(newEvent)
   }
+  console.log("human", disasters)
+
 
   //ant related events
   let rollAnt = 100/(10-home.risk.ant)
   if(Math.random()*100 <= rollAnt){
     let eventID = selectRandomfromArray(categories.ant);
-    let newEvent = eventsData.humidity.filter(event=> event.id === eventID)[0];
+    let newEvent = eventsData.ant.filter(event=> event.id === eventID)[0];
     disasters.push(newEvent)
   }
+  console.log("ant", disasters)
 
   if(disasters.length === 0){
     return null

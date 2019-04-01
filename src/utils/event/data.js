@@ -17,9 +17,51 @@ export const eventsData = {
                 effects: [{type: 'ant',
                 subtype: 'worker',
                 number: 0.9}]
+                }, {
+                description: 'Blizzard',
+                id: "t4",
+                effects: [{type: 'ant',
+                subtype: 'worker',
+                number: 0.9}]
+                }, {
+                description: 'Sudden drop in temperature',
+                id: "t5",
+                effects: [{type: 'ant',
+                subtype: 'worker',
+                number: 0.9}]
+                }, {
+                description: 'Heat Wave',
+                id: "t6",
+                effects: [{type: 'ant',
+                subtype: 'worker',
+                number: 0.9}]
+                }, {
+                description: 'Small Fire',
+                id: "t7",
+                effects: [{type: 'ant',
+                subtype: 'worker',
+                number: 0.9}]
+                }, {
+                description: 'Wildfire',
+                id: "t8",
+                effects: [{type: 'ant',
+                subtype: 'worker',
+                number: 0.9}]
+                }, {
+                description: 'Heatstroke',
+                id: "t9",
+                effects: [{type: 'ant',
+                subtype: 'worker',
+                number: 0.9}]
+                }, {
+                description: 'Mirage',
+                id: "t10",
+                effects: [{type: 'ant',
+                subtype: 'worker',
+                number: 0.9}]
               }],
     humidity: [{
-              description: 'Flood',
+              description: 'During the night, a sudden rainstorm comes pouring down hard. Droplets of water bombard your unprepared colony and some of your workers are caught outside. A part of your colony has been flooded.',
               id: "h1",
               effects: [{type: 'ant',
                   subtype: 'worker',
