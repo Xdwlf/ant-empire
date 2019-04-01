@@ -47,7 +47,7 @@ export class App extends Component {
     let isGamePlaying = (this.state.page !== 'enter' && this.state.page !== 'prequel')
     return (
       <div className="App" data-test="component-app">
-        <CSSTransition in={this.props.notification}
+        <CSSTransition in={!!this.props.notification}
           appear={true}
           timeout={200}
           classNames='fade'
