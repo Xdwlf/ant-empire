@@ -8,13 +8,7 @@ import {eventsData} from './data'
 export function generateEvent(reduxState){
   let {choice} = reduxState
   let state = {...reduxState}
-  let events = [{description: 'filler',
-                  subtype: 'filling',
-                effects: [{
-                  type: 'filler',
-                  subtype: 'filler',
-                  number: 0.3
-                }]}]
+  let events = []
   let updatedAnts = calcCurrentAnts(reduxState, choice)
   let updatedStore = calcNewStore(reduxState)
   // calculate possiblity of events
