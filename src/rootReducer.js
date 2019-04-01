@@ -9,8 +9,8 @@ const initialState = {
     worker: 0
   },
   store: {
-    food: 10,
-    water: 10
+    food: 100,
+    water: 100
   },
   notification: null,
   fuel: 100,

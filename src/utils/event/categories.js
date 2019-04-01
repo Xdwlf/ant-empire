@@ -16,5 +16,5 @@ export const categories = {
   },
   animal: ['e1'],
   human: ['hu1'],
-  ant: ['a1']
+  ant: ['a2']
 }

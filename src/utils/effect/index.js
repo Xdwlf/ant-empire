@@ -12,7 +12,7 @@ export function addUpEffects(effects){
 export function calcEventEffects(event, reduxState){
   if(!event) return {};
   let {ants, store, home, choice} = reduxState
-  let effect;
+  let effect, status;
   if(event.type=== 'ant'){
     effect = Math.floor(ants[event.subtype]*event.number) - ants[event.subtype]
   }
@@ -22,10 +22,14 @@ export function calcEventEffects(event, reduxState){
   if(event.type=== 'store'){
     effect = Math.floor(store[event.subtype] * event.number - store[event.subtype])
   }
+  if(event.type==='status'){
+    status = event.status
+  }
   let number = (choice === "defend" && effect<0) ? Math.floor(effect/2): effect
   return {
     type: event.type,
     subtype: event.subtype,
+    status,
     number
   }
 }
@@ -54,6 +58,12 @@ export function applyEffectsToStatus(effects, status){
         const resources = {...newStatus.home.resources}
         newStatus.home.resources = Object.assign({}, resources, {[effect.subtype]: Math.min(10, Math.max(1, resources[effect.subtype]+ effect.number))})
       } )
+    }
+    if(key=== 'status'){
+      console.log(types[key])
+      types[key].map(effect=>{
+        newStatus.status = [...newStatus, effect.status]
+      })
     }
   }
   return newStatus

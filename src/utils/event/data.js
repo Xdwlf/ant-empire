@@ -1,3 +1,4 @@
+import {gStatus} from '../general/status'
 
 export const eventsData = {
   temperature: [{description: "A freak snowstorm blows through. Many of your ants are caught while out gathering food and freeze to death",
@@ -110,11 +111,10 @@ export const eventsData = {
           }]
         }],
     ant: [{
-          description: 'Ant colony attacks',
-          id: 'a1',
-          effects: [{type: 'ant',
-          subtype: 'worker',
-          number: 0.6}]
-    }]
+          description: 'Captured by ants',
+          id: 'a2',
+          effects: [{type: 'status',
+          status: gStatus.CAPTURED_BY_ANTS},]
+        }]
 
 }

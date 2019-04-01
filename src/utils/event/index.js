@@ -24,6 +24,9 @@ export function generateEvent(reduxState){
   let {narrative, newState} = gameOver({
     ...state, ants: updatedAnts, store: updatedStore
   })
+  //determine if the event rolled will affect game status
+  let statusEffect = (event)? event.effects.filter(effect=> effect.type ==="status"):null
+  newState.status = (event && statusEffect.length>0)? [...newState.status, statusEffect[0].status] : newState.status
   //if gameover, add description to end of narrative
   let {game, notification} = decideIfGameIsPlaying(newState.status)
   return {
@@ -64,8 +67,6 @@ export function rollEvents(reduxState){
     let newEvent = eventsData.animal.filter(event=> event.id ===eventID)[0];
     disasters.push(newEvent)
   }
-  console.log("animal", disasters)
-
 
   //human related events
   let rollHuman = 100/(10-home.risk.human)
@@ -74,7 +75,6 @@ export function rollEvents(reduxState){
     let newEvent = eventsData.human.filter(event=> event.id === eventID)[0];
     disasters.push(newEvent)
   }
-  console.log("human", disasters)
 
 
   //ant related events
@@ -84,7 +84,6 @@ export function rollEvents(reduxState){
     let newEvent = eventsData.ant.filter(event=> event.id === eventID)[0];
     disasters.push(newEvent)
   }
-  console.log("ant", disasters)
 
   if(disasters.length === 0){
     return null
