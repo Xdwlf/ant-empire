@@ -1,0 +1,14 @@
+#store-count{
+  align-items: stretch;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  min-width: 120px;
+}
+
+#store-count table td{
+  display: inline-block;
+  width: 60px;
+  justify-content: center;
+  align-items: center;
+}

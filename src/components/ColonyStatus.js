@@ -5,6 +5,7 @@ import './styles/ColonyStatus.css'
 import AntCount from './AntCount'
 import ResourceCount from './ResourceCount'
 import StoreCount from './StoreCount'
+import RiskCount from './RiskCount'
 
 export class ColonyStatus extends Component{
 
@@ -15,17 +16,21 @@ export class ColonyStatus extends Component{
     let storeEvents = event.filter(effect=> effect.type==='store')
     return(<div className="sidebar" data-test="component-colony-status" ><h4>Status Bar</h4>
       <div>
-        <div>
-          <AntCount ants={ants} eventEffect={ antEvents} reduxState={this.props.state}/>
-        </div>
-        <div>
-          <StoreCount eventEffect={storeEvents} store={store} />
+        <div className='status-section'>
+          <div className='sub-section'>
+            <AntCount ants={ants} eventEffect={ antEvents} reduxState={this.props.state}/>
+          </div>
+          <div className='sub-section'>
+            <StoreCount eventEffect={storeEvents} store={store} />
+          </div>
         </div>
         {(home)? (
-          <div>
-            <div>Your Home: <span data-test="home-description">{(home)? home.description: null}</span></div>
+          <div className='status-section'>
+            <div className='sub-section home'><h4>Your Home:</h4> <div data-test="home-description">{(home)? home.description: null}</div></div>
+            <div className='sub-section home'><h4>Weather:</h4> <div data-test="weather-description">{(home)? home.weather.temperature.desc + ' and ' + home.weather.humidity.desc:null}</div></div>
+
             <ResourceCount eventEffect={resourceEvents} resources={(home) ? home.resources: null}/>
-            <h4>Weather: <span data-test="weather-description">{(home)? home.weather.temperature.desc + ' and ' + home.weather.humidity.desc:null}</span></h4>
+            <RiskCount risk={this.props.state.home.risk} />
           </div>):null
         }
 
