@@ -9,8 +9,8 @@ const initialState = {
     worker: 0
   },
   store: {
-    food: 100,
-    water: 100
+    food: 200,
+    water: 200
   },
   notification: null,
   fuel: 100,
@@ -19,7 +19,12 @@ const initialState = {
   choice: null,
   game: true,
   event: [],
-  status: [gStatus.HEALTHY]
+  status: [gStatus.HEALTHY],
+  stats : {
+    day: 0,
+    homes: [],
+    maxAnts: 1
+  }
 }
 
 export default function rootReducer(state=initialState, action){
@@ -67,6 +72,7 @@ export default function rootReducer(state=initialState, action){
         ...state,
         notification: action.notification
       }
+    
     default:
       return state;
   }

@@ -154,24 +154,20 @@ export const eventsData = {
                 number: 1.1
               }]
             }, {
-              description: "Hurricane",
+              description: "A hurricane has been building. The fierce winds reach you and rampage through your area, bringing rain, wind, and terror. Many of your colony is either washed away or blown far from home.",
               id: "h5",
               effects: [{
-                type: 'store',
-                subtype: 'food',
-                number: 0.8
-              },{
-                type: 'store',
-                subtype: 'water',
-                number: 0.7
+                type: 'ant',
+                subtype: 'worker',
+                number: 0.5
               }]
             }, {
-              description: "Drought",
+              description: "A prolonged drought dries up your water source and you have to rely more on your water stores than usual.",
               id: "h6",
               effects: [{
-                type: 'store',
-                subtype: 'food',
-                number: 0.8
+                type: 'resource',
+                subtype: 'water',
+                number: -1
               },{
                 type: 'store',
                 subtype: 'water',
@@ -179,192 +175,162 @@ export const eventsData = {
               }]
             }],
     animal: [{
-            description: 'Anteater',
+            description: 'Alas! An anteater has happened upon your colony. With its sticky tongue, traps many of your workers who end up midday snacks.',
             id: "e1",
             effects: [{type: 'ant',
             subtype: 'worker',
-            number: 0.8}]
+            number: 0.9}]
           }, {
-            description: 'Scouts picked off',
+            description: 'While out scouting, some of your ants do not return. The others bring tales of terrifying creatures with sharp fangs and unfillable appetites.',
             id: "e2",
             effects: [{type: 'ant',
             subtype: 'worker',
-            number: 0.8}]
+            number: 0.9}]
           }, {
-            description: 'Fungus',
+            description: 'An infection has happened upon your colony. While you are thankfully unaffected, many of your children are not as fortunate. All you can do is dispose of the bodies as they fall one by one to their enternal sleep. Thankfully the bulk of your colony survives.',
             id: "e3",
             effects: [{type: 'ant',
             subtype: 'worker',
-            number: 0.8}]
+            number: 0.8}, {
+              type: 'ant',
+              subtype: 'pupae',
+              number: 0.3
+            }, {
+              type: 'ant',
+              subtype: 'larvae',
+              number: 0.3
+            }, {
+              type: 'ant',
+              subtype: 'eggs',
+              number: 0.3
+            }]
           }, {
-            description: 'Wasp',
+            description: 'An antlion has made itself home in your vicinity. Many of your gatherers fall prey to the antlions carefully planned traps.',
             id: "e4",
             effects: [{type: 'ant',
             subtype: 'worker',
             number: 0.8}]
           }, {
-            description: 'Parasite',
+            description: 'There has recently been a surge in the local spider population and your children have become fuel for their growth.',
             id: "e5",
             effects: [{type: 'ant',
             subtype: 'worker',
             number: 0.8}]
           }],
     human: [{
-          description: 'Human pours poison on colony',
+          description: 'Find you a nuisance, a group of humans has systematically poured poison on your colony and flooded it. By digging further down into your tunnels, some of you manage to escape but at great cost.',
           id: 'hu1',
           effects: [{type: 'ant',
             subtype: 'larvae',
-            number: 0.5},{
+            number: 0},{
+            type: 'ant',
+            subtype: 'pupae',
+            number: 0
+            }, {
+            type: 'ant',
+            subtype: 'eggs',
+            number: 0
+            }, {
             type: 'ant',
             subtype: 'worker',
-            number: 0.8
+            number: 0.2
           }]
         }, {
-          description: 'Magnifying lens',
+          description: 'Cruel pups of the human race have discovered a new way to hurt you. They concentrate the sun through a glass and burn your workers for fun.',
           id: 'hu2',
-          effects: [{type: 'ant',
-            subtype: 'larvae',
-            number: 0.5},{
+          effects: [{
             type: 'ant',
             subtype: 'worker',
-            number: 0.8
+            number: 0.9
           }]
         }, {
-          description: 'Kick anthill',
+          description: 'Human children kick your home in play and many of the tunnels cave in. Fortunately, you are strong and none of your workers are hurt. Some of your ants retaliate and sting the humans. Hopefully they do not come back for revenge.',
           id: 'hu3',
-          effects: [{type: 'ant',
-            subtype: 'larvae',
-            number: 0.5},{
-            type: 'ant',
-            subtype: 'worker',
-            number: 0.8
-          }]
+          effects: [{type: 'risk',
+            subtype: 'human',
+            number: 1}]
         }, {
-          description: 'Destroy scent trails',
+          description: 'After accidentally walking through their terrain, humans destroy your scent trails to ward off you workers. All of them make it back, but the humans are now alerted to your presence.',
           id: 'hu4',
-          effects: [{type: 'ant',
-            subtype: 'larvae',
-            number: 0.5},{
-            type: 'ant',
-            subtype: 'worker',
-            number: 0.8
-          }]
+          effects: [{type: 'risk',
+            subtype: 'human',
+            number: 1}]
         }, {
-          description: 'Move in',
+          description: 'A couple of human homes have popped up nearby, leading you to be even closer to human population. The chance of your paths crossing in the future has increased.',
           id: 'hu5',
-          effects: [{type: 'ant',
-            subtype: 'larvae',
-            number: 0.5},{
-            type: 'ant',
-            subtype: 'worker',
-            number: 0.8
-          }]
+          effects: [{type: 'risk',
+            subtype: 'human',
+            number: 1}]
         }, {
-          description: 'Move out',
+          description: 'Several human homes have been abandoned. Human families have moved out and it should be less likely to run into humans in the future.',
           id: 'hu6',
-          effects: [{type: 'ant',
-            subtype: 'larvae',
-            number: 0.5},{
-            type: 'ant',
-            subtype: 'worker',
-            number: 0.8
-          }]
+          effects: [{type: 'risk',
+            subtype: 'human',
+            number: -1}]
         },{
-          description: 'Kill Queen',
+          description: 'The humans have found you a nuisance and waged war! After a great fight, they manage to dig you out of your home. As you look up at the sky one last time, a pair of giant hands descend upon you. Just once instant, and then blackness. You have been killed by humans.',
           id: 'hu7',
-          effects: [{type: 'ant',
-            subtype: 'larvae',
-            number: 0.5},{
-            type: 'ant',
-            subtype: 'worker',
-            number: 0.8
-          }]
+          effects:  [{type: 'status',
+          status: gStatus.KILLED_BY_HUMANS},]
         }, {
-          description: 'Captured',
+          description: 'The humans have dug up your colony to examine the inner workings of your home. Your workers viciously attempt to fend them off, but they came prepared with gloves. They manage to find you and put you in a small plastic test tube for further experiment. As you are lifted into the sky in their hands, you see the last glimpses of the remains of your colony. You have been captured by humans. ',
           id: 'hu8',
-          effects: [{type: 'ant',
-            subtype: 'larvae',
-            number: 0.5},{
-            type: 'ant',
-            subtype: 'worker',
-            number: 0.8
-          }]
+          effects:  [{type: 'status',
+          status: gStatus.CAPTURED_BY_HUMANS},]
         }],
     ant: [{
-          description: 'Captured by ants',
+          description: 'A neighboring ant colony wages war against you. You are no match to their overwhelming forces and your home is theirs to plunder. Their workers drag you back to their colony to be an unwilling slave. You will spend the rest of your days birthing eggs for your enemies.',
           id: 'a1',
           effects: [{type: 'status',
           status: gStatus.CAPTURED_BY_ANTS},]
         }, {
-          description: 'Ants attack',
+          description: 'Another ant colony has bombarded you with attacks. Your warriors fight bravely and manage to fend them off, but many are hurt.',
           id: 'a2',
-          effects: [{type: 'ant',
-            subtype: 'larvae',
-            number: 0.5},{
+          effects: [{
             type: 'ant',
             subtype: 'worker',
             number: 0.8
           }]
         }, {
-          description: 'Scouts killed',
+          description: 'While out looking for more resources, some of your scouts are attacked by other ants. They do not seem to be friendly ants and the chance of conflict increases.',
           id: 'a3',
-          effects: [{type: 'ant',
-            subtype: 'larvae',
-            number: 0.5},{
+          effects: [{type: 'risk',
+            subtype: 'ant',
+            number: 1},{
             type: 'ant',
             subtype: 'worker',
             number: 0.8
           }]
         }, {
-          description: 'Colony Raided of stores',
-          id: 'a4',
-          effects: [{type: 'ant',
-            subtype: 'larvae',
-            number: 0.5},{
-            type: 'ant',
-            subtype: 'worker',
-            number: 0.8
-          }]
-        }, {
-          description: 'Skirmish',
+          description: 'Your hostile ant neighbors are venturing further into your territory. There have been several skirmishes over the past few days and tension is rising.',
           id: 'a5',
-          effects: [{type: 'ant',
-            subtype: 'larvae',
-            number: 0.5},{
+          effects: [{
             type: 'ant',
             subtype: 'worker',
-            number: 0.8
+            number: 0.9
           }]
         }, {
-          description: 'Assasinated by ant',
+          description: 'You have been an eyesore to the ant colonies around you and some have targetted you. When your ants are out gathering food, your stores were raided.',
           id: 'a6',
-          effects: [{type: 'ant',
-            subtype: 'larvae',
+          effects: [{type: 'store',
+            subtype: 'food',
             number: 0.5},{
-            type: 'ant',
-            subtype: 'worker',
+            type: 'store',
+            subtype: 'water',
             number: 0.8
           }]
         }, {
-          description: 'Ants wage war on you',
+          description: 'One of the ants your area have waged war on you. In the future, attacks will be more common.',
           id: 'a7',
-          effects: [{type: 'ant',
-            subtype: 'larvae',
-            number: 0.5},{
-            type: 'ant',
-            subtype: 'worker',
-            number: 0.8
-          }]
+          effects: [{type: 'risk',
+            subtype: 'ant',
+            number: 1}]
         }, {
-          description: 'Ants move away',
+          description: 'Unable to keep up with your progress, an ant colony nearby has become afraid of you. They decide to move away. Your risk of being attacked by ants decreases.',
           id: 'a8',
-          effects: [{type: 'ant',
-            subtype: 'larvae',
-            number: 0.5},{
-            type: 'ant',
-            subtype: 'worker',
-            number: 0.8
-          }]
+          effects: [{type: 'risk',
+            subtype: 'ant',
+            number: -1}]
         }]
 
 }

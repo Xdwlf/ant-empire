@@ -25,6 +25,9 @@ export function calcEventEffects(event, reduxState){
   if(event.type==='status'){
     status = event.status
   }
+  if(event.type==='risk'){
+    effect = event.number
+  }
   let number = (choice === "defend" && effect<0) ? Math.floor(effect/2): effect
   return {
     type: event.type,
@@ -60,9 +63,15 @@ export function applyEffectsToStatus(effects, status){
       } )
     }
     if(key=== 'status'){
-      console.log(types[key])
-      types[key].map(effect=>{
+        types[key].map(effect=>{
         newStatus.status = [...newStatus, effect.status]
+      })
+    }
+    if(key=== 'risk'){
+      newStatus.home = {...status.home}
+      types[key].map(effect=>{
+        const risk = {...newStatus.home.risk}
+        newStatus.home.risk = Object.assign({}, risk, {[effect.subtype]: Math.min(10, Math.max(1, risk[effect.subtype] + effect.number))})
       })
     }
   }
