@@ -1,0 +1,10 @@
+#resource-count{
+
+}
+
+#resource-count .increasing{
+  color: green;
+}
+#resource-count .decreasing{
+  color: red;
+}

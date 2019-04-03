@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import {addUpEffects} from '../utils/effect'
+import {scale} from '../utils/display/styles'
+import {addStyleToText, styleByValue} from '../utils/display/colorize'
 import './styles/StoreCount.css'
 
 class StoreCount extends Component{
@@ -12,10 +14,17 @@ class StoreCount extends Component{
       <div id="store-count" data-test="component-store-count">
         <h4>Storage</h4>
         <table>
-          <tr><th>Food:</th> <td><span data-test="food-store">{store.food}</span> {(foodEffect!==0)?
-            (<span data-test="food-effect">{(foodEffect>0)? '+':''}{foodEffect}</span>): ''}</td></tr>
-          <tr><th>Water:</th> <td><span data-test="water-store">{store.water}</span> {(waterEffect!==0)?
-            (<span data-test="water-effect">{(waterEffect>0)? '+':''}{waterEffect}</span>): ''}</td></tr>
+          <tr>
+            <th>Food:</th>
+            <td className="data"><span data-test="food-store">{store.food}</span></td>
+            <td className="effect">{(foodEffect!==0)?
+            (<span data-test="food-effect">{(foodEffect>0)? addStyleToText('+', scale.okay):''}{styleByValue(foodEffect)}</span>): ''}</td>
+          </tr>
+          <tr>
+            <th>Water:</th>
+            <td className="data"><span data-test="water-store">{store.water}</span></td> <td className="effect">{(waterEffect!==0)?
+            (<span data-test="water-effect">{(waterEffect>0)? addStyleToText('+', scale.okay):''}{styleByValue(waterEffect)}</span>): ''}</td>
+          </tr>
         </table>
       </div>)
   }

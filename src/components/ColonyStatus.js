@@ -28,9 +28,12 @@ export class ColonyStatus extends Component{
           <div className='status-section'>
             <div className='sub-section home'><h4>Your Home:</h4> <div data-test="home-description">{(home)? home.description: null}</div></div>
             <div className='sub-section home'><h4>Weather:</h4> <div data-test="weather-description">{(home)? home.weather.temperature.desc + ' and ' + home.weather.humidity.desc:null}</div></div>
-
-            <ResourceCount eventEffect={resourceEvents} resources={(home) ? home.resources: null}/>
+          </div>):null
+        }
+        {(home)? (
+          <div className='status-section'>
             <RiskCount risk={this.props.state.home.risk} />
+            <ResourceCount eventEffect={resourceEvents} resources={(home) ? home.resources: null}/>
           </div>):null
         }
 

@@ -8,7 +8,17 @@
 
 #store-count table td{
   display: inline-block;
-  width: 60px;
   justify-content: center;
   align-items: center;
+}
+
+#store-count table tr th{
+  text-align: right;
+}
+
+#store-count table tr td.data{
+  min-width: 75px;
+}
+#store-count table tr td.effect{
+  min-width: 30px;
 }

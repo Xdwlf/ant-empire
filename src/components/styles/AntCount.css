@@ -12,7 +12,18 @@
 
 #ant-count table td{
   display: inline-block;
-  width: 60px;
+  width: 50px;
   justify-content: center;
   align-items: center;
+}
+#ant-count table th{
+  text-align: right
+}
+
+#ant-count table td.data{
+  width: 50px;
+}
+
+#ant-count table td.effect{
+  width: 30px;
 }

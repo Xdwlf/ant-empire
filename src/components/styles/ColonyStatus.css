@@ -1,33 +1,49 @@
 .sidebar{
   flex-basis: 200px;
   flex-grow: 2;
-  border: 2px solid pink;
 }
 
-
-
 .sidebar .status-section {
-  border: 2px solid green;
   margin-top: 5px;
 }
 
+.sidebar .status-section:nth-child(3) {
+  margin-top: 25px;
+  flex-direction: row;
+  display: flex;
+  justify-content: space-around;
+  align-items: stretch;
+}
+
 .sidebar .status-section .sub-section{
-  border: 2px solid green;
   display: inline-flex;
   flex-grow: 1;
   flex-direction: row;
   justify-content: space-around;
-  margin: 5px
+  margin: 10px 0;
+
 }
 
 .sidebar .status-section .sub-section.home{
   flex-direction: column;
   display: flex;
+  margin: 20px 0;
 
 }
 
 .status-section:nth-child(1){
-  border: 2px solid white;
   display: flex;
   justify-content:space-around;
+}
+
+#risk-count td{
+  display: inline-block;
+  flex-direction: column;
+  min-width: 80px;
+}
+
+#resource-count td{
+  display: inline-block;
+  flex-direction: column;
+  min-width: 20px;
 }
