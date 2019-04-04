@@ -3,7 +3,7 @@
 }
 
 #resource-count .increasing{
-  color: green;
+  color: lightgreen;
 }
 #resource-count .decreasing{
   color: red;

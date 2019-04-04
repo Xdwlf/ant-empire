@@ -1,9 +1,33 @@
-.choice{
-  z-index: -1;
-  position: absolute;
+#choice{
+  text-align: center;
+  height: 100%;
+  padding-top: 6%
 }
 
-.story{
-  max-width: 500px;
-  margin: 5px;
+#choice .selections{
+  margin-top: 30px;
+  display: flex;
+  height: 50px;
+  justify-content: space-around;
+  align-items: stretch;
+  flex-direction: row;
+
+}
+
+#choice .selections button{
+  min-width: 60px;
+  width: 30%;
+  background-color: rgba(200,200,200,0.8);
+  border-radius: 5px;
+  outline: none;
+}
+
+#choice .selections button:hover{
+  background-color: rgba(230,230,230,1);
+  transition: 0.5s all linear;
+}
+
+.narrative{
+  max-width: 800px;
+  margin: 15px auto;
 }

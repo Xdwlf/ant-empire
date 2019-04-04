@@ -1,9 +1,11 @@
 import React, {Component} from 'react';
 import '../App.css'
+import './styles/Prequel.css'
 import {CSSTransition} from 'react-transition-group'
 
-const narrative = ['', "You are a queen bee looking for a new home. After leaving your childhood home, you set out for a new life.",
-'You are looking for the best place to establish a new ant colony.']
+const narrative = ['', "You are a young queen ant. You've spent your entire childhood inside your mother's colony. While lacking for nothing, recently you've felt a bit restless. You and the rest of the young queens and winged males feel like there's something different these few days.",
+"A strange urge seems to pulling you from your home and you finally can't resist. Along with your brothers and sister spread to take flight, scattering quickly across the land and mating with ants from other colonies. For a few weeks, the skies are covered in young winged ants.",
+"Soon, you set off searching for a place to build your own colony. Endless dangers await you along the way and the vast majority of young queen ants like yourself will survive to safely establish a colony. Will you?"]
 
 class Prequel extends Component{
   constructor(props){
@@ -31,9 +33,8 @@ class Prequel extends Component{
 
   }
   render(){
-    let divs = this.state.story.map((line,idx)=> <div key={idx}>{line}</div>)
     return (
-      <div data-test="component-prequel">
+      <div id="prequel" data-test="component-prequel">
         {this.state.story.map((line,idx)=> (
           <CSSTransition
             in={true}

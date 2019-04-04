@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
+import SearchingPreloader from '../components/SearchingPreloader'
 import {setStore, updateChoice} from '../actionCreators'
 import {calculateStoreDeductionForTravel} from '../utils/travel'
 import {connect} from 'react-redux'
+import './styles/Searching.css'
 
 export class Searching extends Component{
   constructor(props){
@@ -25,9 +27,9 @@ export class Searching extends Component{
     if(this.state.choice === "change"){
       change = "Your entire colony packs up and brings what they can as you search for a new home."
     }
-    return (<div data-test="component-searching">
-      <div> {change} </div>
-      <div> Searching... </div>
+    return (<div id="searching" data-test="component-searching">
+        <div className="change"> {change} </div>
+        <SearchingPreloader />
       </div>
 
     )

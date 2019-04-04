@@ -1,13 +1,23 @@
 #notification{
-  display: block;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
   border: black;
   z-index: 2;
   position: absolute;
-  margin: auto;
-  margin-top: 9%;
   border: 2px solid teal;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
   padding: 30px;
   min-width: 400px;
   min-height: 400px;
-  background-color: rgba(255, 0, 0, 0.3);
+  max-width: 800px;
+  background-color: rgba(100, 0, 0);
+  border-radius: 5px;
+}
+
+#notification button{
+  height: 50px;
+  border-radius: 10px;
 }

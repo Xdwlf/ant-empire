@@ -1,7 +1,9 @@
+import React from 'react'
 export const descriptions = {
   temperature: [{
     desc: 'frozen',
     story: "The ground is frozen solid and difficult to burrow into. Cold days and nights below freezing are probably the norm here. ",
+    className: "freezing",
     risk: 10,
     resource: 3},{
     desc: 'cold',

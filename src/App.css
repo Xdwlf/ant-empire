@@ -2,7 +2,9 @@
   text-align: center;
   display: flex;
   justify-content: center;
+  box-sizing: border-box;
   border: 2px solid white;
+  padding: 30px;
   height: 100vh;
   overflow: hidden;
 }
@@ -11,8 +13,6 @@ body, html{
   background-color: black;
   color: white
 }
-
-
 
 .mainscreen{
   flex-basis: 450px;

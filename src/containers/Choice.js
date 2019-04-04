@@ -33,9 +33,9 @@ export class Choice extends Component{
   generateHomeAndNarrative(){
     let {story, currentHome} = generateHome()
     let beginning = [this.state.statusNarrative, "You have wandered upon a new area."]
-    let newHomeDesc = beginning.concat(story).concat([<div>
-              <button onClick={()=> this.props.changePage('searching')}>Keep Looking</button>
-              <button onClick={()=>{this.selectHome(this.state.currentHome)}}>Settle Down</button>
+    let newHomeDesc = beginning.concat(story).concat([<div className="selections">
+              <button className="ui button" onClick={()=> this.props.changePage('searching')}>Keep Looking</button>
+              <button className="ui button" onClick={()=>{this.selectHome(this.state.currentHome)}}>Settle Down</button>
             </div>])
     this.setState({currentHome})
     this.interval = setInterval(()=> this.setState({story: [...this.state.story, newHomeDesc.splice(0, 1)]}), 1500)
@@ -61,7 +61,7 @@ export class Choice extends Component{
       <div className="story" key={idx}> {line} </div>
     ))
     return(
-      <div data-test="component-choice">
+      <div id="choice" data-test="component-choice">
         {(this.props.state.game)?
           this.state.story.map((line, idx) => (
             <CSSTransition
@@ -70,7 +70,7 @@ export class Choice extends Component{
               key={idx}
               timeout={500}
               classNames='fade'>
-                <div > {line} </div>
+                <div className="narrative"> {line} </div>
             </ CSSTransition>
           )) :null}
 

@@ -1,0 +1,16 @@
+#risk-count .increasing{
+  color: green;
+}
+#risk-count .decreasing{
+  color: red;
+}
+
+#risk-count .data{
+  min-width: 90px;
+}
+
+#risk-count td:nth-child(3){
+  border: 2px solid white;
+  display: inline-block;
+  width: 20px;
+}

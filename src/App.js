@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {CSSTransition} from 'react-transition-group'
 import './App.css';
+import './containers/styles/textEffects.css'
 import ColonyStatus from './components/ColonyStatus'
 import Notification from './components/Notification'
 import loadPage from './utils/general/loadPage'
@@ -49,7 +50,7 @@ export class App extends Component {
       <div className="App" data-test="component-app">
         <CSSTransition in={!!this.props.notification}
           appear={true}
-          timeout={200}
+          timeout={0}
           classNames='fade'
           unmountOnExit>
             <Notification notification={this.props.notification}
@@ -75,7 +76,7 @@ export class App extends Component {
               classNames="fade"
               unmountOnExit
               >
-                <ColonyStatus key='statusbar' className="statusbar"/>
+                <ColonyStatus key='statusbar' className="statusbar" resetGame={this.resetGame}/>
           </ CSSTransition>
 
       </div>

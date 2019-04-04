@@ -1,7 +1,7 @@
 
 export const scale = {
   danger: {
-    color: "red"
+    color: "#ff1a1a"
   },
   caution: {
     color: "orange"

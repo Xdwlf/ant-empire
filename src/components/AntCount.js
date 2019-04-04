@@ -1,8 +1,10 @@
 import React, {Component} from 'react'
+import {CSSTransition} from 'react-transition-group';
 import {addUpEffects} from '../utils/effect/'
 import {scale} from '../utils/display/styles'
 import {addStyleToText, styleByValue} from '../utils/display/colorize'
 import './styles/AntCount.css'
+
 
 class AntCount extends Component{
   constructor(props){

@@ -14,7 +14,9 @@ export class ColonyStatus extends Component{
     let antEvents = event.filter(effect=> effect.type==='ant')
     let resourceEvents = event.filter(effect=> effect.type==='resource')
     let storeEvents = event.filter(effect=> effect.type==='store')
-    return(<div className="sidebar" data-test="component-colony-status" ><h4>Status Bar</h4>
+    let riskEvents = event.filter(effect=> effect.type==='risk')
+
+    return(<div className="sidebar" data-test="component-colony-status" >
       <div>
         <div className='status-section'>
           <div className='sub-section'>
@@ -32,12 +34,13 @@ export class ColonyStatus extends Component{
         }
         {(home)? (
           <div className='status-section'>
-            <RiskCount risk={this.props.state.home.risk} />
+            <RiskCount risk={this.props.state.home.risk} eventEffect={riskEvents} />
             <ResourceCount eventEffect={resourceEvents} resources={(home) ? home.resources: null}/>
           </div>):null
         }
 
       </div>
+      <button id="start-over" className="ui button" onClick={this.props.resetGame}>Start Over</button>
       </div>)
   }
 }

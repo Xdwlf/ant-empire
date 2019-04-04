@@ -1,0 +1,26 @@
+.freezing {
+  color: lightblue;
+  transition: 0.2s all linear;
+  animation: shiver 2s linear infinite;
+}
+
+@keyframes shiver {
+  0%{
+    transform: translate(0px,0px);
+  }
+  20%{
+    transform: translate(5px,0px);
+  }
+  40%{
+    transform: translate(-5px,0px);
+  }
+  60%{
+    transform: translate(6px,0px);
+  }
+  80%{
+    transform: translate(-6px,0px);
+  }
+  100%{
+    transform: translate(0px,0px);
+  }
+}

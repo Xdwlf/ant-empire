@@ -1,0 +1,43 @@
+#gameplay{
+  padding-top: 8%;
+  border: 2px solid white;
+  height: 100%;
+}
+
+#gameplay h4{
+  font-size: 1.5rem;
+}
+
+#gameplay #choices{
+  display: flex;
+  flex-direction: row;
+  margin: 8%;
+}
+
+#gameplay #choices div{
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  justify-content: center;
+}
+
+#gameplay #choices div button{
+  display: block;
+  width: 80%;
+  min-width: 150px;
+  max-width: 400px;
+  margin: 10px auto;
+  height:50px;
+  border-radius: 10px;
+  background-color: rgba(200,200,200,0.9)
+}
+#gameplay #choices div button:hover{
+  background-color: rgba(230,230,230,1);
+  transition: 0.5s all linear;
+}
+
+@media only screen and (max-width: 768px) {
+  #gameplay #choices{
+    margin: 0;
+  }
+}
