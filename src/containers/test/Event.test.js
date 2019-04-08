@@ -65,6 +65,9 @@ test('<Event /> renders without error', ()=>{
 
 test('<Event /> renders button', ()=>{
   const wrapper = setup();
-  const button = findByTestAttr(wrapper, 'continue-button')
-  expect(button.length).toBe(1)
+  setTimeout(()=>{
+    const button = findByTestAttr(wrapper, 'continue-button')
+    expect(button.length).toBe(1)
+  }, 1000)
+
 })

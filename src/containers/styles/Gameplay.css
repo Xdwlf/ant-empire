@@ -8,6 +8,13 @@
   font-size: 1.5rem;
 }
 
+#gameplay .warning{
+  color: red;
+  display: block;
+  height: 40px;
+  text-align: center;
+}
+
 #gameplay #choices{
   display: flex;
   flex-direction: row;
@@ -23,6 +30,10 @@
 
 #gameplay #choices div button{
   display: block;
+
+}
+
+#gameplay button{
   width: 80%;
   min-width: 150px;
   max-width: 400px;
@@ -31,10 +42,12 @@
   border-radius: 10px;
   background-color: rgba(200,200,200,0.9)
 }
-#gameplay #choices div button:hover{
+
+#gameplay button:hover{
   background-color: rgba(230,230,230,1);
   transition: 0.5s all linear;
 }
+
 
 @media only screen and (max-width: 768px) {
   #gameplay #choices{

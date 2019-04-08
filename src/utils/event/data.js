@@ -303,7 +303,7 @@ export const eventsData = {
           }]
         }, {
           description: 'Your hostile ant neighbors are venturing further into your territory. There have been several skirmishes over the past few days and tension is rising.',
-          id: 'a5',
+          id: 'a4',
           effects: [{
             type: 'ant',
             subtype: 'worker',
@@ -311,7 +311,7 @@ export const eventsData = {
           }]
         }, {
           description: 'You have been an eyesore to the ant colonies around you and some have targetted you. When your ants are out gathering food, your stores were raided.',
-          id: 'a6',
+          id: 'a5',
           effects: [{type: 'store',
             subtype: 'food',
             number: 0.5},{
@@ -321,16 +321,22 @@ export const eventsData = {
           }]
         }, {
           description: 'One of the ants your area have waged war on you. In the future, attacks will be more common.',
-          id: 'a7',
+          id: 'a6',
           effects: [{type: 'risk',
             subtype: 'ant',
             number: 1}]
         }, {
           description: 'Unable to keep up with your progress, an ant colony nearby has become afraid of you. They decide to move away. Your risk of being attacked by ants decreases.',
-          id: 'a8',
+          id: 'a7',
           effects: [{type: 'risk',
             subtype: 'ant',
             number: -1}]
+        }, {
+          description: 'A new ant colony has moved into your area. While no ant has been hurt yet, the chances of you having conflict with your neighbors increases.',
+          id: 'a8',
+          effects: [{type: 'risk',
+            subtype: 'ant',
+            number: 1}]
         }]
 
 }

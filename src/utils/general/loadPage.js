@@ -7,13 +7,13 @@ import Gameplay from '../../containers/Gameplay'
 import Event from '../../containers/Event'
 
 
-export default function loadPage(page, callback, callback2, callback3){
+export default function loadPage(page, callback, callback2, callback3, ants){
   const pages = {
     enter: <Enter key={page} changePage={callback} />,
     prequel: <Prequel key={page} changePage={callback} />,
     choice: <Choice key={page} changePage={callback} />,
     searching: <Searching key={page} changePage={callback} />,
-    gameplay: <Gameplay key={page} changePage={callback} setChoice={callback2}/>,
+    gameplay: <Gameplay key={page} changePage={callback} setChoice={callback2} ants={ants}/>,
     event: <Event key={page} changePage={callback} resetGame={callback3}/>
     }
   return pages[page]

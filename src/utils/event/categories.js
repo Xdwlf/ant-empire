@@ -14,7 +14,25 @@ export const categories = {
     dry: ['h2', "h6", "h4"],
     'very dry': ['h2', "h6", "h4"]
   },
-  animal: ['e1', 'e2', 'e3', 'e4', 'e5'],
-  human: ['hu1', 'hu2', 'hu3', 'hu4', 'hu5', 'hu6', 'hu7', 'hu8'],
-  ant: ['a1', 'a2', 'a3', 'a4', 'a5', 'a6', 'a7', 'a8']
+  animal: {
+    'very low': [],
+    'low': [],
+    'medium': ['e4', 'e3', 'e4'],
+    'high': ['e1', 'e3', 'e4', 'e5'],
+    'very high': ['e1', 'e2', 'e3', 'e4', 'e5']
+  },
+  human: {
+    'very low': ['hu3', 'hu6'],
+    'low': ['hu3', 'hu5', 'hu6'],
+    'medium': ['hu2', 'hu3', 'hu4', 'hu6'],
+    'high': ['hu1', 'hu2', 'hu3', 'hu4', 'hu5', 'hu6'],
+    'very high': ['hu1', 'hu2', 'hu3', 'hu4', 'hu5', 'hu6', 'hu7', 'hu8']
+  },
+  ant: {
+    'very low': ['a8'],
+    'low': ['a3', 'a4', 'a6', 'a8'],
+    'medium': ['a3', 'a4', 'a5', 'a6', 'a8', 'a7'],
+    'high': ['a2', 'a3', 'a4', 'a5', 'a6', 'a8', 'a7'],
+    'very high': ['a1', 'a2', 'a3', 'a4', 'a5', 'a6', 'a8', 'a7']
+  }
 }

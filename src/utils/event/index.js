@@ -4,6 +4,8 @@ import {calcNewStore} from './calcStore'
 import {calcCurrentAnts} from './calcAnts'
 import {categories} from './categories'
 import {eventsData} from './data'
+import {categorizeRisk} from './categorizeRisk'
+import {choiceData} from './choiceCategories'
 
 export function generateEvent(reduxState){
   let {choice} = reduxState
@@ -11,6 +13,7 @@ export function generateEvent(reduxState){
   let events = []
   let updatedAnts = calcCurrentAnts(reduxState, choice)
   let updatedStore = calcNewStore(reduxState)
+  events.push(selectRandomfromArray(choiceData[choice]))
   // calculate possiblity of events
   let event = rollEvents(reduxState)
   if(event) events.push(event)
@@ -57,7 +60,7 @@ export function rollEvents(reduxState){
   //animal events
   let rollAnimal = 100/(10-home.risk.animal)
   if(Math.random()*100 <= rollAnimal){
-    let eventID = selectRandomfromArray(categories.animal);
+    let eventID = selectRandomfromArray(categories.animal[categorizeRisk(home.risk.animal)]);
     let newEvent = eventsData.animal.filter(event=> event.id ===eventID)[0];
     disasters.push(newEvent)
   }
@@ -65,7 +68,7 @@ export function rollEvents(reduxState){
   //human related events
   let rollHuman = 100/(10-home.risk.human)
   if(Math.random()*100 <= rollHuman){
-    let eventID = selectRandomfromArray(categories.human);
+    let eventID = selectRandomfromArray(categories.human[categorizeRisk(home.risk.human)]);
     let newEvent = eventsData.human.filter(event=> event.id === eventID)[0];
     disasters.push(newEvent)
   }
@@ -74,7 +77,7 @@ export function rollEvents(reduxState){
   //ant related events
   let rollAnt = 100/(10-home.risk.ant)
   if(Math.random()*100 <= rollAnt){
-    let eventID = selectRandomfromArray(categories.ant);
+    let eventID = selectRandomfromArray(categories.ant[categorizeRisk(home.risk.ant)]);
     let newEvent = eventsData.ant.filter(event=> event.id === eventID)[0];
     disasters.push(newEvent)
   }
