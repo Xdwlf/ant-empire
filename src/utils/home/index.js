@@ -1,4 +1,5 @@
 import {selectRandomfromArray, randomIntFromInterval} from '../general/general'
+import React from 'react'
 import {descriptions} from './descriptions'
 //
 // home: {
@@ -33,7 +34,7 @@ export default function generateHome(){
   let anirisk = selectRandomfromArray(descriptions.animal)
   let hrisk = selectRandomfromArray(descriptions.human)
   let arisk = selectRandomfromArray(descriptions.ant)
-  const story = [temp.story.concat(humid.story, environ.story), anirisk.story.concat(hrisk.story, arisk.story), home.story]
+  const story = [<div>{temp.story} {humid.story} {environ.story}</div>, <div>{anirisk.story} {hrisk.story} {arisk.story} </div>, home.story]
   let currentHome = {description: [`A ${humid.desc} and ${temp.desc} in a ${home.desc} ${environ.desc}.`],
       resources: {
         food: temp.resource,

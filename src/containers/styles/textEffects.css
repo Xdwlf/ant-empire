@@ -1,26 +1,138 @@
-.freezing {
+.texteffect{
+
+
+}
+
+.texteffect.freezing {
+  display: inline-block;
+  font-weight: bold;
   color: lightblue;
   transition: 0.2s all linear;
-  animation: shiver 2s linear infinite;
+  animation: shiver 0.5s linear infinite;
+}
+
+.texteffect.snow {
+  color: white;
+  text-shadow: 0px 0px 3px rgba(255,255,255,1);
+
+}
+
+.texteffect.warm{
+  color: rgba(255, 139, 51, 1);
+  text-shadow: 0px 0px 3px rgba(221, 167, 85, 1);
+  transition: 0.2s all linear;
+  animation: glow 2s linear infinite;
+}
+
+.texteffect.hot{
+  font-weight: bold;
+  color: rgba(255, 30, 30, 1);
+  transition: 0.2s all linear;
+  animation: heat 2s linear infinite;
+}
+
+.texteffect.soaked{
+  font-weight: lighter;
+  color: rgba(0, 61, 214, 1);
+}
+
+.texteffect.dry{
+  font-weight: lighter;
+  color: rgba(255, 255, 51, 0.8);
+}
+
+.texteffect.lush{
+  color:rgba(3, 153, 0, 1);
+}
+
+
+.texteffect.mountain{
+  color:rgba(130, 128, 255, 1);
+  font-size: 1.1 rem;
+  line-height: 100%;
+
+}
+
+.texteffect.forest{
+  color:rgba(44, 151, 32, 1);
+  font-size: 1.1 rem;
+  line-height: 100%;
+}
+
+.texteffect.gold{
+  color:rgba(255, 225, 0, 1);
+  font-size: 1.1 rem;
+  line-height: 100%;
+}
+
+.texteffect.meadow{
+  color:rgba(255, 225, 0, 1);
+  font-size: 1.1 rem;
+  line-height: 100%;
+}
+
+.texteffect.danger{
+  color:rgba(230,50, 50, 0.7);
+}
+
+.texteffect.caution{
+  color:rgba(225, 118, 5, 0.8);
+}
+
+.texteffect.warning{
+  color: rgba(221, 225, 5, 0.8);
+}
+
+.texteffect.okay{
+  color: rgba(107, 225, 5, 0.8);
+}
+
+.texteffect.good{
+  color:rgba(23, 195, 4, 1);
 }
 
 @keyframes shiver {
   0%{
     transform: translate(0px,0px);
   }
-  20%{
-    transform: translate(5px,0px);
+  10%{
+    transform: translate(1px,0px);
   }
-  40%{
-    transform: translate(-5px,0px);
+  30%{
+    transform: translate(-1px,0px);
   }
-  60%{
-    transform: translate(6px,0px);
+  50%{
+    transform: translate(1px,0px);
   }
-  80%{
-    transform: translate(-6px,0px);
+  70%{
+    transform: translate(-1px,0px);
   }
   100%{
     transform: translate(0px,0px);
+  }
+}
+
+@keyframes glow {
+  0%{
+    text-shadow: 0px 0px 2px rgba(255, 228, 51, 1);
+  }
+  50%{
+    text-shadow: 0px 0px 6px rgba(255, 228, 51, 1),
+                  0px 0px 10px rgba(255, 228, 51, 1);
+  }
+  100%{
+    text-shadow: 0px 0px 2px rgba(255, 228, 51, 1);
+  }
+}
+
+@keyframes heat {
+  0%{
+    opacity: 0.5
+  }
+  70%{
+    opacity: 1
+  }
+  100%{
+    opacity: 0.5
   }
 }

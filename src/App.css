@@ -7,11 +7,12 @@
   padding: 30px;
   height: 100vh;
   overflow: hidden;
+
 }
 
 body, html{
   background-color: black;
-  color: white
+  color: rgba(255,255,255,0.7)
 }
 
 .mainscreen{
