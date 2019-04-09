@@ -1,10 +1,16 @@
 .enter-container{
   padding: 15%;
-  transition: all 2s
+  transition: all 2s;
 }
 
-.enter-container{
+.enter-container div{
+  margin-top: calc(5vh + 5rem);
+  transform: translate(0, 70px);
+  display: block;
+}
 
+.enter-container div .enterButton{
+  opacity: 0;
 }
 
 .fade-appear{
