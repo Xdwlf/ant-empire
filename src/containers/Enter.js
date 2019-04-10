@@ -8,6 +8,26 @@ import '../App.css'
 import './styles/Enter.css'
 
 class Enter extends Component{
+  constructor(props){
+    super(props)
+    this.state = {
+      hover: false
+    }
+    this.mouseOver = this.mouseOver.bind(this)
+    this.mouseOut = this.mouseOut.bind(this)
+
+  }
+
+  mouseOver(){
+    this.setState({hover: true})
+  }
+
+  mouseOut(){
+    this.setState({hover: false})
+
+  }
+
+
   componentDidMount(){
     setTimeout(()=> anime({
       targets: '.enterButton',
@@ -18,6 +38,7 @@ class Enter extends Component{
     }), 4000)
   }
   render(){
+    let {hover} = this.state
     let {changePage} = this.props
     return(
       <CSSTransition
@@ -26,10 +47,10 @@ class Enter extends Component{
         timeout={500}
         classNames="fade">
         <div className="enter-container" data-test="component-enter">
-          <BackgroundAnimation />
+          <BackgroundAnimation hover={hover}/>
           <Logo />
           <div>
-            <button data-test="enter-button" className='ui button enterButton' onClick={()=> changePage('prequel')}>Enter</button>
+            <button data-test="enter-button" onMouseOver={this.mouseOver} onMouseOut={this.mouseOut} className='ui button enterButton' onClick={()=> changePage('prequel')}>Enter</button>
           </div>
         </div>
       </CSSTransition>

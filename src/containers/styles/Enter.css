@@ -1,16 +1,18 @@
 .enter-container{
   padding: 15%;
   transition: all 2s;
+  height: 100%;
 }
 
 .enter-container div{
-  margin-top: calc(5vh + 5rem);
-  transform: translate(0, 70px);
   display: block;
 }
 
 .enter-container div .enterButton{
-  opacity: 0;
+  position: absolute;
+  left: 50%;
+  top: calc(50% + 2rem);
+  transform: translate(-50%);
 }
 
 .fade-appear{
