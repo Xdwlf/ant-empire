@@ -1,0 +1,12 @@
+#enterbtn{
+  letter-spacing: 3px;
+  width: calc(100px + 5vw);
+  background-color: rgba(190,190,190, 0.8);
+  color: rgba(50,50,50, 1);
+  transition: 0.3s all linear;
+}
+#enterbtn:hover{
+  background-color: rgba(50,50,50, 0.1);
+  color: rgba(190,190,190, 0.8);
+  border: 1px solid rgba(190,190,190, 0.8);
+}

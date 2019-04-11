@@ -4,4 +4,6 @@ svg#logo{
   left: 50%;
   top: 35%;
   transform: translate(-50%, -50%);
+  width: calc(15vw + 10rem);
+
 }

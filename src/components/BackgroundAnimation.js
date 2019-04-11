@@ -7,6 +7,8 @@ class BackgroundAnimation extends Component{
     super(props)
     this.jellyAnimation = this.jellyAnimation.bind(this)
     this.reachAnimation = this.reachAnimation.bind(this)
+    this.spreadAnimation = this.spreadAnimation.bind(this)
+
   }
 
   jellyAnimation(){
@@ -37,7 +39,7 @@ class BackgroundAnimation extends Component{
   }
 
   reachAnimation(){
-    anime({
+    const reach = anime({
         targets: '#backgroundanimation',
         points: [
           {value:  "330 300 275 60 634 190 902 43 851 292 1059 170 850 470 1020 610 780 657 870 788 593 602 178 830 387 484 65 518 219 310 19 133"
@@ -52,19 +54,39 @@ class BackgroundAnimation extends Component{
         duration: 2000,
         loop: true
       });
+    return reach;
+  }
+
+  spreadAnimation(){
+      anime({
+        targets: '#backgroundanimation',
+        points: [{value: "350 270 380 181 580 182 822 228 991 182 919 280 980 490 820 520 810 587 700 492 553 522 388 599 391 404 215 388 289 340 231 283"},
+          {value:  "-20 -15 250 -201 550 -20 862 -18 1401 -302 1219 260 1480 690 1220 900 1010 1010 730 900 533 920 88 1199 -201 850 -200 -20 269 340 -151 203"
+        }, {value: "-20 -15 250 -201 550 -20 862 -18 1401 -302 1219 260 1480 690 1220 900 1010 1010 730 900 533 920 88 1199 -201 850 -200 -20 269 340 -151 203"
+      }],
+        easing: 'easeInOutExpo',
+        duration: 5000,
+        loop: false
+      });
   }
 
   render(){
-        let {hover} = this.props
+        let {hover, clicked} = this.props
         const jelly = this.jellyAnimation()
+        const reach = this.reachAnimation()
         if(!hover){
+          reach.pause()
           jelly.play()
         } else {
           jelly.pause()
-          this.reachAnimation()
+          reach.play()
+        }
+        if(clicked){
+          anime.remove('#backgroundanimation')
+          this.spreadAnimation()
         }
     return(<svg id="background" viewBox="0 0 1180 850" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-      <polygon id='backgroundanimation' points="20 30 130 41 590 22 912 38 1131 102 1119 290 1080 460 1110 610 1170 737 980 832 673 842 398 820 81 724 15 578 20 390 81 253"
+      <polygon id='backgroundanimation' points="-20 -15 250 -201 550 -20 862 -18 1401 -302 1219 260 1480 690 1220 900 1010 1010 730 900 533 920 88 1199 -201 850 -200 -20 269 340 -151 203"
           stroke="black" fill="black" stroke-width="3"/>
           </svg>
 
@@ -72,5 +94,3 @@ class BackgroundAnimation extends Component{
   }
 }
 export default BackgroundAnimation
-
-// "90 90 230 1 590 02 912 78 1131 22 1119 160 1180 460 1110 640 1170 787 980 732 673 842 198 699 21 824 55 598 9 330 91 153"
