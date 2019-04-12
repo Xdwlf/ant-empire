@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import ReactTooltip from 'react-tooltip'
 import {addDay} from '../actionCreators'
 import {connect} from 'react-redux'
 import './styles/Gameplay.css'
@@ -6,13 +7,6 @@ import './styles/Gameplay.css'
 export class Gameplay extends Component{
   constructor(props){
     super(props)
-    this.state={
-      warning: false
-    }
-    this.showWarning = this.showWarning.bind(this)
-  }
-  showWarning(){
-    this.setState({warning:true})
   }
 
   componentWillUnmount(){
@@ -26,7 +20,6 @@ export class Gameplay extends Component{
     return (
       <div id="gameplay" data-test="component-gameplay">
         <h4>What would you like to do?</h4>
-              <div className="warning">{warning}</div>
               <div id="choices">
                   <div>
                     <button onClick={()=> setChoice('birth')}>Focus on Birthing Workers</button>
@@ -38,8 +31,11 @@ export class Gameplay extends Component{
                           <button onClick={()=> setChoice('expand')}>Scout for Resources</button>
                       </div>:
                       <div>
-                          <button onMouseEnter={this.showWarning} disabled>Be on the Defensive</button>
-                          <button onMouseEnter={this.showWarning} disabled>Scout for Resources</button>
+                          <span data-tip data-for="worker-warning"><button onMouseEnter={this.showWarning} disabled>Be on the Defensive</button></span>
+                          <span data-tip data-for="worker-warning"><button onMouseEnter={this.showWarning} data-tip data-for="worker-warning" disabled>Scout for Resources</button></span>
+                          <ReactTooltip id="worker-warning" type="error" effect="solid">
+                            <span>You must have at least one worker ant to do that.</span>
+                          </ReactTooltip>
                       </div>
                     }
 

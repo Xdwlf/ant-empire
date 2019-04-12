@@ -28,8 +28,13 @@
   justify-content: center;
 }
 
+#gameplay #choices span{
+  z-index: 2;
+}
+
 #gameplay #choices div button{
   display: block;
+  
 
 }
 

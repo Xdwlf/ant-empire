@@ -41,8 +41,8 @@ export class App extends Component {
     this.setState({page:'enter'})
   }
 
-
   render() {
+    let {displayToolTip} = this.state
     //logic to figure out which page to render
     let page = loadPage(this.state.page, this.changePage, this.setChoice, this.resetGame)
     let isGamePlaying = (this.state.page !== 'enter' && this.state.page !== 'prequel')
