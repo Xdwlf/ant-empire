@@ -4,7 +4,7 @@ import {connect} from 'react-redux'
 import {generateEvent} from '../utils/event'
 import {describeChoice} from '../utils/event/choice'
 import {compileEffects, applyEffectsToStatus, calcEventEffects} from '../utils/effect'
-import {updateAll, setEvent} from '../actionCreators'
+import {updateAll, setEvent, updateMaxAnts} from '../actionCreators'
 import {gStatus} from '../utils/general/status'
 import './styles/Event.css'
 
@@ -41,6 +41,7 @@ export class Event extends Component{
       this.props.updateAll(updatedState)
       }
     clearInterval(this.interval)
+    this.props.updateMaxAnts(this.props.reduxState.ants.worker + 1)
   }
 
   chooseButton(){
@@ -84,4 +85,4 @@ function mapStateToProps(reduxState){
   }
 }
 
-export default connect(mapStateToProps,{updateAll, setEvent})(Event)
+export default connect(mapStateToProps,{updateAll, setEvent, updateMaxAnts})(Event)

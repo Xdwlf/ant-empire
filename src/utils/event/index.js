@@ -15,7 +15,7 @@ export function generateEvent(reduxState){
   let updatedStore = calcNewStore(reduxState)
   events.push(selectRandomfromArray(choiceData[choice]))
   // calculate possiblity of events
-  let event = rollEvents(reduxState)
+  let event = (reduxState.ants.worker > 10)? rollEvents(reduxState): null
   if(event) events.push(event)
   //check gameover
   let {narrative, newState} = gameOver({

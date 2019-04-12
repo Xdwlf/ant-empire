@@ -1,4 +1,4 @@
-import {SET_HOME, UPDATE_FUEL, SET_STORE, UPDATE_GAMESTATUS, UPDATE_CHOICE, UPDATE_ALL, SET_EVENT, RESET_STATE, UPDATE_NOTIFICATION} from './actionCreators'
+import {SET_HOME, UPDATE_FUEL, SET_STORE, UPDATE_GAMESTATUS, UPDATE_CHOICE, UPDATE_ALL, SET_EVENT, RESET_STATE, UPDATE_NOTIFICATION, ADD_DAY, RECORD_HOME, UPDATE_MAX_ANTS} from './actionCreators'
 import {gStatus} from './utils/general/status'
 
 const initialState = {
@@ -21,7 +21,7 @@ const initialState = {
   event: [],
   status: [gStatus.HEALTHY],
   stats : {
-    day: 0,
+    day: 1,
     homes: [],
     maxAnts: 1
   }
@@ -72,7 +72,30 @@ export default function rootReducer(state=initialState, action){
         ...state,
         notification: action.notification
       }
-    
+    case ADD_DAY:{
+      const stats = {...state.stats, day: state.stats.day+1}
+      return{
+        ...state, stats
+      }
+    }
+    case RECORD_HOME:{
+      const homes = [...state.stats.homes, action.home]
+      const stats = {...state.stats, homes}
+      return{
+        ...state,
+        stats
+      }
+    }
+    case UPDATE_MAX_ANTS:{
+      const currentAnts = state.stats.maxAnts
+      const maxAnts = (action.ants> currentAnts)? action.ants: currentAnts
+      const stats = {...state.stats, maxAnts}
+      return{
+        ...state,
+        stats
+      }
+    }
+
     default:
       return state;
   }

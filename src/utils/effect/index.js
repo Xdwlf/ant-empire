@@ -15,12 +15,14 @@ export function calcEventEffects(event, reduxState){
   let effect, status;
   if(event.type=== 'ant'){
     effect = Math.floor(ants[event.subtype]*event.number) - ants[event.subtype]
+    effect = (event.number>1 && effect<5)? 5: effect;
   }
   if(event.type=== 'resource'){
     effect = event.number
   }
   if(event.type=== 'store'){
     effect = Math.floor(store[event.subtype] * event.number - store[event.subtype])
+    effect = (event.number>1 && effect<10)? 25: effect;
   }
   if(event.type==='status'){
     status = event.status
@@ -28,7 +30,7 @@ export function calcEventEffects(event, reduxState){
   if(event.type==='risk'){
     effect = event.number
   }
-  let number = (choice === "defend" && effect<0) ? Math.floor(effect/2): effect
+  let number = (choice === "defend" && effect<0) ? Math.floor(effect/4): effect
   return {
     type: event.type,
     subtype: event.subtype,

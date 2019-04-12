@@ -2,7 +2,7 @@ export const choiceData = {
   birth: [{description: "You've manages to birth quite a few eggs! Hopefully they will quickly grow up into strong workers and provide for the colony.",
           effects: [{type: "ant",
           subtype: 'eggs',
-          number: 1.1}]
+          number: 1.5}]
            }, {description: "To give birth to your eggs, you consume more resources than usual. However, you still don't manage to lay more eggs.",
           id: "t1",
           effects: [{type: "store",

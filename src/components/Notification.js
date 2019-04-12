@@ -4,12 +4,50 @@ import "./styles/Notification.css";
 class Notification extends Component{
   constructor(props){
     super(props)
+    this.state={
+      stats:false
+    }
+    this.viewStats= this.viewStats.bind(this)
+    this.viewNarrative = this.viewNarrative.bind(this)
+  }
+  viewStats(){
+    this.setState({stats:true})
+  }
+  viewNarrative(){
+    this.setState({stats:false})
   }
   render(){
-    let content = this.props.notification;
+    const {stats} = this.props;
+    let content = (!this.state.stats)? (<div>
+        {this.props.notification}
+        <div className="button-group">
+          <button onClick={this.props.resetGame}>Play Again</button>
+          <button onClick={this.viewStats}>View Stats</button>
+        </div>
+        </div>): <div>
+          <table>
+            <h4>Stats</h4>
+            <tbody>
+              <tr><td>Days Lived:</td><td>{stats.day}</td></tr>
+              <tr><td>Max Ants:</td><td>{stats.maxAnts}</td></tr>
+              <tr><td>Homes Lived In: </td><td>
+                  <ul>
+                    {stats.homes.map(h=>(
+                      <li>{h}</li>
+                    ))}
+                  </ul>
+                  </td>
+              </tr>
+            </tbody>
+            <div className="button-group">
+              <button onClick={this.props.resetGame}>Play Again</button>
+              <button onClick={this.viewNarrative}>Go Back</button>
+            </div>
+          </table>
+
+        </div> ;
     return (<div id="notification">
       {content}
-      <button onClick={this.props.resetGame}>Play Again</button>
       </div>)
   }
 }

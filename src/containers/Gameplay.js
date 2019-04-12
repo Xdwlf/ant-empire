@@ -1,4 +1,6 @@
 import React, {Component} from 'react'
+import {addDay} from '../actionCreators'
+import {connect} from 'react-redux'
 import './styles/Gameplay.css'
 
 export class Gameplay extends Component{
@@ -11,6 +13,10 @@ export class Gameplay extends Component{
   }
   showWarning(){
     this.setState({warning:true})
+  }
+
+  componentWillUnmount(){
+    this.props.addDay()
   }
 
   render(){
@@ -43,4 +49,11 @@ export class Gameplay extends Component{
   }
 }
 
-export default Gameplay
+function mapStateToProps(reduxState){
+  return {
+    stats: reduxState.stats,
+    ants: reduxState.ants
+    }
+}
+
+export default connect(mapStateToProps, {addDay})(Gameplay)

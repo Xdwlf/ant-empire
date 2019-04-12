@@ -7,6 +7,9 @@ export const UPDATE_ALL = "UPDATE_ALL"
 export const SET_EVENT = "SET_EVENT"
 export const RESET_STATE = "RESET_STATE"
 export const UPDATE_NOTIFICATION = "UPDATE_NOTIFICATION"
+export const RECORD_HOME = "RECORD_HOME"
+export const ADD_DAY="ADD_DAY"
+export const UPDATE_MAX_ANTS = "UPDATE_MAX_ANTS"
 
 export function setHome(home){
   return {
@@ -67,5 +70,25 @@ export function updateNotification(notification){
   return{
     type: RESET_STATE,
     notification
+  }
+}
+
+export function addDay(){
+  return{
+    type: ADD_DAY,
+  }
+}
+
+export function recordHome(home){
+  return{
+    type: RECORD_HOME,
+    home
+  }
+}
+
+export function updateMaxAnts(ants){
+  return{
+    type: UPDATE_MAX_ANTS,
+    ants
   }
 }

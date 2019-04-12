@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux'
 import generateHome from '../utils/home'
-import {setHome, updateGameStatus, updateAll} from '../actionCreators'
+import {setHome, updateGameStatus, updateAll, recordHome, updateMaxAnts} from '../actionCreators'
 import {gameOver} from '../utils/general/gameHelpers'
 import {decideIfGameIsPlaying} from '../utils/general/general'
 import '../App.css'
@@ -24,6 +24,7 @@ export class Choice extends Component{
   componentWillMount(){
     this.updateGameStatus()
     this.generateHomeAndNarrative()
+    this.props.updateMaxAnts(this.props.state.ants.worker + 1)
   }
 
   componentWillUnmount(){
@@ -53,6 +54,7 @@ export class Choice extends Component{
 
   selectHome(home){
     this.props.setHome(home)
+    this.props.recordHome(home.description[0])
     this.props.changePage('gameplay')
   }
 
@@ -85,4 +87,4 @@ function mapStateToProps(reduxState){
   }
 }
 
-export default connect(mapStateToProps, {setHome, updateGameStatus, updateAll})(Choice)
+export default connect(mapStateToProps, {setHome, updateGameStatus, updateAll, recordHome, updateMaxAnts})(Choice)

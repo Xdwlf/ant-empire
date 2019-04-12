@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import SearchingPreloader from '../components/SearchingPreloader'
-import {setStore, updateChoice} from '../actionCreators'
+import {setStore, updateChoice, addDay} from '../actionCreators'
 import {calculateStoreDeductionForTravel} from '../utils/travel'
 import {connect} from 'react-redux'
 import './styles/Searching.css'
@@ -17,6 +17,7 @@ export class Searching extends Component{
   componentWillUnmount(){
     //remove from store
     let updatedStore = calculateStoreDeductionForTravel(this.props.state)
+    this.props.addDay()
     this.props.setStore(updatedStore)
   }
   render(){
@@ -44,4 +45,4 @@ function mapStateToProps(reduxState){
   }
 }
 
-export default connect(mapStateToProps, {updateChoice, setStore})(Searching)
+export default connect(mapStateToProps, {updateChoice, setStore, addDay})(Searching)
