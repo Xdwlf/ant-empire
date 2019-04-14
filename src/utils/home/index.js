@@ -1,7 +1,8 @@
-import {selectRandomfromArray, randomIntFromInterval} from '../general/general'
+import {selectRandomfromArray} from '../general/general'
 import React from 'react'
 import {descriptions} from './descriptions'
-//
+
+// Example of format of home object
 // home: {
 //   description: chilly mound in a forest,
 //   resources: {
@@ -18,12 +19,7 @@ import {descriptions} from './descriptions'
 //     humidity: {desc: }
 //   }
 // }
-// export default function determineDescriptor(num){
-//   switch(num){
-//     case >
-//   }
-// }
-//very high, high, medium, low, very low
+
 
 
 export default function generateHome(){

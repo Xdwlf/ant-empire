@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Enter from '../../containers/Enter'
 import Prequel from '../../containers/Prequel'
 import Choice from '../../containers/Choice'

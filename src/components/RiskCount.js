@@ -18,17 +18,17 @@ class RiskCount extends Component {
           <tr>
             <th>Ant:</th>
             <td className="data">{describeRiskAsAdjective(risk.ant)}</td>
-            <td>{(antEffects!=0)?  ((antEffects>0) ? <span className="increasing">⇈</span> : <span className="decreasing">⇊</span>):null}</td>
+            <td>{(antEffects!==0)?  ((antEffects>0) ? <span className="increasing">⇈</span> : <span className="decreasing">⇊</span>):null}</td>
           </tr>
           <tr>
             <th>Animal:</th>
             <td className="data">{describeRiskAsAdjective(risk.animal)}</td>
-            <td>{(animalEffects)?  ((animalEffects>0) ? <span className="increasing">⇈</span> : <span className="decreasing">⇊</span>):null}</td>
+            <td>{(animalEffects!==0)?  ((animalEffects>0) ? <span className="increasing">⇈</span> : <span className="decreasing">⇊</span>):null}</td>
           </tr>
           <tr>
             <th>Human:</th>
             <td className="data">{describeRiskAsAdjective(risk.human)}</td>
-            <td>{(humanEffects!=0)? ((humanEffects>0) ? <span className="increasing">⇈</span> : <span className="decreasing">⇊</span>):null}</td>
+            <td>{(humanEffects!==0)? ((humanEffects>0) ? <span className="increasing">⇈</span> : <span className="decreasing">⇊</span>):null}</td>
           </tr>
         </tbody>
       </table>

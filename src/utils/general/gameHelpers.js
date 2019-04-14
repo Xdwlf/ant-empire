@@ -1,4 +1,3 @@
-import {statusEffects} from './effects'
 import {gStatus} from './status'
 import {gameStatusNarratives} from './narrative'
 

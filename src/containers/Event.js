@@ -54,11 +54,6 @@ export class Event extends Component{
 
   render(){
     const {game} = this.props.reduxState
-    let story = this.state.story.map((paragraph, idx)=> (
-      <div key={idx}>{paragraph}</div>
-    ))
-    let content = (this.props.reduxState.game) ? (<div>
-            {story}</div>)  : null
     return (
       <div id="event" data-test="component-event">
         {(game)? this.state.story.map((paragraph, idx) => (

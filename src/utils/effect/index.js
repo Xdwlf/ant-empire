@@ -11,7 +11,7 @@ export function addUpEffects(effects){
 
 export function calcEventEffects(event, reduxState){
   if(!event) return {};
-  let {ants, store, home, choice} = reduxState
+  let {ants, store, choice} = reduxState
   let effect, status;
   if(event.type=== 'ant'){
     effect = Math.floor(ants[event.subtype]*event.number) - ants[event.subtype]
@@ -42,8 +42,6 @@ export function calcEventEffects(event, reduxState){
 export function applyEffectsToStatus(effects, status){
   let types = {};
   let newStatus = {...status}
-  const ants = {...status.ants}
-  const store = {...status.store}
   effects.map(effect=> (types.hasOwnProperty(effect.type))?
     types[effect.type].push(effect): types[effect.type] = [effect])
   for(let key in types){

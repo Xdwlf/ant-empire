@@ -13,7 +13,7 @@ export class App extends Component {
   constructor(props){
     super(props);
     this.state={
-      page: 'choice',
+      page: 'enter',
     }
     this.changePage = this.changePage.bind(this)
     this.setChoice = this.setChoice.bind(this)
@@ -42,7 +42,6 @@ export class App extends Component {
   }
 
   render() {
-    let {displayToolTip} = this.state
     //logic to figure out which page to render
     let page = loadPage(this.state.page, this.changePage, this.setChoice, this.resetGame)
     let isGamePlaying = (this.state.page !== 'enter' && this.state.page !== 'prequel')

@@ -1,4 +1,4 @@
-import {selectRandomfromArray, randomIntFromInterval, decideIfGameIsPlaying} from '../general/general'
+import {selectRandomfromArray, decideIfGameIsPlaying} from '../general/general'
 import {gameOver} from '../general/gameHelpers'
 import {calcNewStore} from './calcStore'
 import {calcCurrentAnts} from './calcAnts'

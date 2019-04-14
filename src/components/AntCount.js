@@ -1,5 +1,4 @@
 import React, {Component} from 'react'
-import {CSSTransition} from 'react-transition-group';
 import {addUpEffects} from '../utils/effect/'
 import {scale} from '../utils/display/styles'
 import {addStyleToText, styleByValue} from '../utils/display/colorize'
@@ -7,9 +6,6 @@ import './styles/AntCount.css'
 
 
 class AntCount extends Component{
-  constructor(props){
-    super(props)
-  }
   render(){
     let {ants, eventEffect} = this.props
     let eggEffect = addUpEffects(eventEffect.filter(event => event.subtype === 'eggs'))

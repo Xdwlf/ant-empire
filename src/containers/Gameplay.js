@@ -5,10 +5,6 @@ import {connect} from 'react-redux'
 import './styles/Gameplay.css'
 
 export class Gameplay extends Component{
-  constructor(props){
-    super(props)
-  }
-
   componentWillUnmount(){
     this.props.addDay()
   }
