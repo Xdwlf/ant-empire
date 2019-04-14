@@ -48,3 +48,11 @@ export const testEffects = [
     subtype: "eggs",
     number: 5
   }]
+
+  export const riskEffects = [
+    {type: "risk",
+      subtype: 'human',
+      number: -1},
+    {type: "risk",
+      subtype: 'ant',
+      number: 1}]

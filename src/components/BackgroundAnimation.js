@@ -87,7 +87,7 @@ class BackgroundAnimation extends Component{
         }
     return(<svg id="background" viewBox="0 0 1180 850" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
       <polygon id='backgroundanimation' points="-20 -15 250 -201 550 -20 862 -18 1401 -302 1219 260 1480 690 1220 900 1010 1010 730 900 533 920 88 1199 -201 850 -200 -20 269 340 -151 203"
-          stroke="black" fill="black" stroke-width="3"/>
+          stroke="black" fill="black" strokeWidth="3"/>
           </svg>
 
 )

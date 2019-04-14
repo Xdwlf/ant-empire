@@ -3,7 +3,7 @@ import './styles/SearchingPreloader.css'
 
 const SearchingPreloader = ()=>{
   return(
-    <div class="preloader2">
+    <div className="preloader2">
         <span></span>
         <span></span>
         <span></span>

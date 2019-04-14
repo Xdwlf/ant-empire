@@ -34,7 +34,7 @@ export class Choice extends Component{
   generateHomeAndNarrative(){
     let {story, currentHome} = generateHome()
     let beginning = [this.state.statusNarrative, "You have wandered upon a new area."]
-    let newHomeDesc = beginning.concat(story).concat([<div className="selections">
+    let newHomeDesc = beginning.concat(story).concat([<div key={'sdiv'} className="selections">
               <button className="ui button" onClick={()=> this.props.changePage('searching')}>Keep Looking</button>
               <button className="ui button" onClick={()=>{this.selectHome(this.state.currentHome)}}>Settle Down</button>
             </div>])
@@ -59,9 +59,6 @@ export class Choice extends Component{
   }
 
   render(){
-    let story = this.state.story.map((line, idx) => (
-      <div className="story" key={idx}> {line} </div>
-    ))
     return(
       <div id="choice" data-test="component-choice">
         {(this.props.state.game)?
@@ -72,7 +69,7 @@ export class Choice extends Component{
               key={idx}
               timeout={500}
               classNames='fade'>
-                <div className="narrative"> {line} </div>
+                <div key={line[0]+line.length+idx} className="narrative"> {line} </div>
             </ CSSTransition>
           )) :null}
 

@@ -13,7 +13,7 @@ export class App extends Component {
   constructor(props){
     super(props);
     this.state={
-      page: 'enter',
+      page: 'choice',
     }
     this.changePage = this.changePage.bind(this)
     this.setChoice = this.setChoice.bind(this)

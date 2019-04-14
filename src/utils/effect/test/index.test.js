@@ -1,6 +1,6 @@
 import {compileEffects, addUpEffects, calcEventEffects,applyEffectsToStatus} from '../index'
 import {defaultState, controlState} from '../../event/test/testData'
-import {defaultEvents, expectedEffects, testEffects} from './testData'
+import {defaultEvents, expectedEffects, testEffects, riskEffects} from './testData'
 
 describe('compileEffects function', ()=>{
   let effects;
@@ -85,6 +85,10 @@ describe('applyEffectsToStatus function', ()=>{
   test('the returned object is not equal to the input object', ()=>{
     const status = applyEffectsToStatus(testEffects, defaultState)
     expect(status).not.toEqual(defaultState)
+  })
+  test('risk changes depending on effects', ()=>{
+    const status = applyEffectsToStatus(riskEffects, defaultState)
+    expect(status.home.risk.human).toBe(7)
   })
 
 })

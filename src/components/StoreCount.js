@@ -14,17 +14,20 @@ class StoreCount extends Component{
       <div id="store-count" data-test="component-store-count">
         <h4>Storage</h4>
         <table>
-          <tr>
-            <th>Food:</th>
-            <td className="data"><span data-test="food-store">{store.food}</span></td>
-            <td className="effect">{(foodEffect!==0)?
-            (<span data-test="food-effect">{(foodEffect>0)? addStyleToText('+', scale.okay):''}{styleByValue(foodEffect)}</span>): ''}</td>
-          </tr>
-          <tr>
-            <th>Water:</th>
-            <td className="data"><span data-test="water-store">{store.water}</span></td> <td className="effect">{(waterEffect!==0)?
-            (<span data-test="water-effect">{(waterEffect>0)? addStyleToText('+', scale.okay):''}{styleByValue(waterEffect)}</span>): ''}</td>
-          </tr>
+          <tbody>
+            <tr>
+              <th>Food:</th>
+              <td className="data"><span data-test="food-store">{store.food}</span></td>
+              <td className="effect">{(foodEffect!==0)?
+              (<span data-test="food-effect">{(foodEffect>0)? addStyleToText('+', scale.okay):null}{styleByValue(foodEffect)}</span>): null}</td>
+            </tr>
+            <tr>
+              <th>Water:</th>
+              <td className="data"><span data-test="water-store">{store.water}</span></td>
+              <td className="effect">{(waterEffect!==0)?
+              (<span data-test="water-effect">{(waterEffect>0)? addStyleToText('+', scale.okay):null}{styleByValue(waterEffect)}</span>): null}</td>
+            </tr>
+          </tbody>
         </table>
       </div>)
   }

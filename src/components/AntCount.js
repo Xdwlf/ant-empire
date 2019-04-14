@@ -20,6 +20,7 @@ class AntCount extends Component{
       <div id="ant-count" data-test="component-ant-count">
         <h4>Your Ants</h4>
         <table>
+          <tbody>
             <tr>
               <th>Eggs:</th>
               <td className="data"><span data-test="ant-eggs">{ants.eggs}</span></td>
@@ -39,6 +40,7 @@ class AntCount extends Component{
               <th>Workers:</th>
               <td className="data" data-test="ant-worker">{ants.worker}</td>
               <td className="effect">{(workerEffect>0)? addStyleToText('+', scale.okay):''}{(workerEffect!==0)? styleByValue(workerEffect): ''}</td></tr>
+          </tbody>
         </table>
       </div>
     )
