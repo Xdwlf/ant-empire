@@ -34,9 +34,13 @@
 
 #gameplay #choices div button{
   display: block;
-  
-
 }
+
+#gameplay #choices .warning-tooltip{
+  width: 25%;
+  max-width: 500px;
+}
+
 
 #gameplay button{
   width: 80%;

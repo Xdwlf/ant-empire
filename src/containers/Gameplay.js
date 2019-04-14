@@ -15,8 +15,6 @@ export class Gameplay extends Component{
 
   render(){
     let {setChoice, ants} = this.props
-    let warning = (this.state.warning)? "You must have at least one worker ant to do that.": null
-
     return (
       <div id="gameplay" data-test="component-gameplay">
         <h4>What would you like to do?</h4>
@@ -33,7 +31,7 @@ export class Gameplay extends Component{
                       <div>
                           <span data-tip data-for="worker-warning"><button onMouseEnter={this.showWarning} disabled>Be on the Defensive</button></span>
                           <span data-tip data-for="worker-warning"><button onMouseEnter={this.showWarning} data-tip data-for="worker-warning" disabled>Scout for Resources</button></span>
-                          <ReactTooltip id="worker-warning" type="error" effect="solid">
+                          <ReactTooltip className="warning-tooltip" id="worker-warning" type="error" effect="solid">
                             <span>You must have at least one worker ant to do that.</span>
                           </ReactTooltip>
                       </div>
