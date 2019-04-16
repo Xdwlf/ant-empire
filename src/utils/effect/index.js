@@ -9,6 +9,10 @@ export function compileEffects(events){
   return effects
 }
 
+/**
+ * Takes an array of effects and adds them up
+ */
+
 export function addUpEffects(effects){
   if(!effects) return 0
   return effects.reduce((accum, effect)=> accum+effect.number, 0)
