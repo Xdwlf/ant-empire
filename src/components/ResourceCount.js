@@ -3,8 +3,11 @@ import {addUpEffects} from '../utils/effect'
 import {describeResourceAsAdjective} from '../utils/display/resources'
 import './styles/ResourceCount.css'
 
-class ResourceCount extends Component {
+/**
+ * Displays the resource availability for the current home
+ */
 
+class ResourceCount extends Component {
   render(){
     let {eventEffect, resources} = this.props
     let foodEffects = addUpEffects(eventEffect.filter(event=> event.subtype=== 'food'))

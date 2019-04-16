@@ -8,9 +8,13 @@ import '../App.css'
 import './styles/Choice.css'
 import {CSSTransition} from 'react-transition-group'
 
+/**
+ * Choice is a page that generates a home and allows the player to choose whether to stay or move on
+ */
 export class Choice extends Component{
   constructor(props){
     super(props)
+    //Checks if there is a status effect
     const {narrative} = gameOver(this.props.state)
     this.state={
       story:[],
@@ -31,6 +35,9 @@ export class Choice extends Component{
     clearInterval(this.interval)
   }
 
+  /**
+   * Generates a new Home and adds the narrative to the state at intervals to stagger rendering
+   */
   generateHomeAndNarrative(){
     let {story, currentHome} = generateHome()
     let beginning = [this.state.statusNarrative, "You have wandered upon a new area."]
@@ -51,6 +58,11 @@ export class Choice extends Component{
     this.props.updateAll(updatedState)
 
   }
+
+  /**
+   * If the Player chooses to 'settle', handle everything needed to set the home
+   * @param {Object} home - The home object that was generated
+   */
 
   selectHome(home){
     this.props.setHome(home)

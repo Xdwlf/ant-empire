@@ -5,7 +5,6 @@ import {addStyleToText, styleByValue} from '../utils/display/colorize'
 import './styles/StoreCount.css'
 
 class StoreCount extends Component{
-
   render(){
     let {store, eventEffect} = this.props;
     const waterEffect = addUpEffects(eventEffect.filter(event => event.subtype === "water"))

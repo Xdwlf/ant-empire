@@ -5,6 +5,10 @@ import {calculateStoreDeductionForTravel} from '../utils/travel'
 import {connect} from 'react-redux'
 import './styles/Searching.css'
 
+/**
+ * Searching Page
+ * Displays whenever Player moves
+ */
 export class Searching extends Component{
   constructor(props){
     super(props)
@@ -15,7 +19,7 @@ export class Searching extends Component{
   }
 
   componentWillUnmount(){
-    //remove from store
+    //Decrease from store
     let updatedStore = calculateStoreDeductionForTravel(this.props.state)
     this.props.addDay()
     this.props.setStore(updatedStore)

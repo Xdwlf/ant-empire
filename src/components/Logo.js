@@ -2,8 +2,13 @@ import React, {Component} from 'react'
 import anime from 'animejs'
 import './styles/Logo.css'
 
+/**
+ * Logo on Enter page at Landing
+ */
+
 class Logo extends Component{
   componentDidMount(){
+    //Logo animation for appearing
     anime({
       targets: 'svg path',
       strokeDashoffset: [anime.setDashoffset, 0],

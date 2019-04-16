@@ -4,10 +4,15 @@ import {scale} from '../utils/display/styles'
 import {addStyleToText, styleByValue} from '../utils/display/colorize'
 import './styles/AntCount.css'
 
+/**
+ * Ant Count
+ * Renders a table in the Colony Status bar that shows the number of ants for each type
+ */
 
 class AntCount extends Component{
   render(){
     let {ants, eventEffect} = this.props
+    //Filter out effects by category so it can be displayed while not yet impacting redux state yet
     let eggEffect = addUpEffects(eventEffect.filter(event => event.subtype === 'eggs'))
     let larvaeEffect = addUpEffects(eventEffect.filter(event => event.subtype === 'larvae'))
     let pupaeEffect = addUpEffects(eventEffect.filter(event => event.subtype === 'pupae'))

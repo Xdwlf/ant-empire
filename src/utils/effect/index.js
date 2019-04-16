@@ -1,3 +1,8 @@
+/**
+ * Takes an array of events and flattens it to an array of effects
+ * @param {array of Objects} events - An array of events
+ */
+
 export function compileEffects(events){
   if(!events) return []
   let effects = events.reduce((accum, curr) => [...accum, ...curr.effects], [])

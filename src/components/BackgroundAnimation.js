@@ -2,6 +2,9 @@ import React, {Component} from 'react'
 import anime from 'animejs'
 import './styles/BackgroundAnimation.css'
 
+/**
+ * The background animation for the landing page (Enter Component)
+ */
 class BackgroundAnimation extends Component{
   constructor(props){
     super(props)
@@ -10,6 +13,8 @@ class BackgroundAnimation extends Component{
     this.spreadAnimation = this.spreadAnimation.bind(this)
 
   }
+
+  //The Standard background animation for the Enter page
 
   jellyAnimation(){
     const jelly = anime({
@@ -38,6 +43,8 @@ class BackgroundAnimation extends Component{
     return jelly;
   }
 
+  //Animation for when the Player hovers over the Enter button in the Enter page
+
   reachAnimation(){
     const reach = anime({
         targets: '#backgroundanimation',
@@ -56,6 +63,8 @@ class BackgroundAnimation extends Component{
       });
     return reach;
   }
+
+  //Animation for when the player clicks on the Enter button in the Enter page
 
   spreadAnimation(){
       anime({

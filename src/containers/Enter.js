@@ -7,9 +7,13 @@ import anime from 'animejs'
 import '../App.css'
 import './styles/Enter.css'
 
+/**
+ * Home Page with animation and an Enter button
+ */
 class Enter extends Component{
   constructor(props){
     super(props)
+    //Animation depends on whether the mouse is hovering over button
     this.state = {
       hover: false,
       clicked: false
@@ -30,15 +34,18 @@ class Enter extends Component{
   mouseOut(){
     if(!this.state.clicked){
       this.setState({hover: false})
-
     }
-
   }
+
+  /**
+   * If the Enter button is clicked, handles the processes necessary
+   */
 
   handleClick(){
     const {changePage} = this.props
     if(!this.state.clicked){
       this.setState({clicked:true})
+      //Fades out logo and enter button
       anime({
         targets: '#enterButton',
         opacity: 0,
@@ -51,13 +58,14 @@ class Enter extends Component{
         duration: 1100,
         loop: false
       })
+      //Changes the page after a period of time to allow animations
       setTimeout(()=>{
         changePage('prequel')
       }, 4000)
     }
   }
 
-
+  //Fades in the button at the beginning
   componentDidMount(){
     setTimeout(()=> anime({
       targets: '#enterButton',

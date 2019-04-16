@@ -3,6 +3,9 @@ import {addUpEffects} from '../utils/effect'
 import {describeRiskAsAdjective} from '../utils/display/status'
 import './styles/RiskCount.css'
 
+/**
+ * Displays the Risk for the current home
+ */
 class RiskCount extends Component {
 
   render(){

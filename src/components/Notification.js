@@ -1,9 +1,13 @@
 import React, {Component} from 'react'
 import "./styles/Notification.css";
-
+/**
+ * Notification Component
+ * Pops up whenever game is over
+ */
 class Notification extends Component{
   constructor(props){
     super(props)
+    //If stats should be displayed on notification
     this.state={
       stats:false
     }
@@ -18,6 +22,8 @@ class Notification extends Component{
   }
   render(){
     const {stats} = this.props;
+    /* If view stats has not been clicked, show the narrative. Otherwise, display the stats.
+     */
     let content = (!this.state.stats)? (<div>
         {this.props.notification}
         <div className="button-group">

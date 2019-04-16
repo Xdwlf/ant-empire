@@ -4,7 +4,15 @@ import {addDay} from '../actionCreators'
 import {connect} from 'react-redux'
 import './styles/Gameplay.css'
 
+/**
+ * Gameplay Page
+ * Renders 4 choices that player may choose to impact their game
+ */
 export class Gameplay extends Component{
+
+  /**
+   * Increases the day in the redux state by 1
+   */
   componentWillUnmount(){
     this.props.addDay()
   }
@@ -19,6 +27,8 @@ export class Gameplay extends Component{
                     <button onClick={()=> setChoice('birth')}>Focus on Birthing Workers</button>
                     <button onClick={()=> setChoice('change')}>Change Homes</button>
                   </div>
+
+                  {/**If there are no worker ants, then disable some choices. */}
                     {(ants && ants.worker>0)?
                       <div>
                           <button onClick={()=> setChoice('defend')}>Be on the Defensive</button>

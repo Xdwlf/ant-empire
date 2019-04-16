@@ -1,5 +1,9 @@
 import React from 'react'
 import {scale} from './styles'
+/**
+ * Returns a span of text depending on number value of resource
+ * @param {number} num - Resource availability represented by a number between 1-10
+ */
 export function describeResourceAsAdjective(num){
   switch(true){
     case num < 2:

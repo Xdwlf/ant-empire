@@ -1,6 +1,10 @@
 import React, {Component} from 'react';
 import './styles/EnterButton.css'
 
+/**
+ * Enter button on Enter page at landing
+ */
+
 class EnterButton extends Component{
 
   render(){
