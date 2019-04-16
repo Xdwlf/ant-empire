@@ -3,7 +3,6 @@
   display: flex;
   justify-content: center;
   box-sizing: border-box;
-  border: 2px solid white;
   height: 100vh;
   overflow: hidden;
   font-size: 1.1rem;
@@ -19,8 +18,8 @@ body, html{
 
 .mainscreen{
   flex-basis: 450px;
-  flex-grow: 8;
-  border: 2px solid green;
+  flex-grow: 6;
+  background-color: rgba(20,20,20,0.9)
 }
 
 .invisible{
