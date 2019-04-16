@@ -21,4 +21,21 @@
 }
 #store-count table tr td.effect{
   min-width: 30px;
+  animation: pulse 2s linear infinite alternate;
+
+}
+
+
+
+
+@keyframes pulse {
+  0% {
+    opacity: 0.6;
+  }
+  30% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.6;
+  }
 }
