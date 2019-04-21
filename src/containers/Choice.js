@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux'
 import generateHome from '../utils/home'
 import {setHome, updateGameStatus, updateAll, recordHome, updateMaxAnts} from '../actionCreators'
+import {compileEffects, applyEffectsToStatus, calcEventEffects} from '../utils/effect';
+import {addStatusEffects} from '../utils/general/statusHelpers'
 import {gameOver} from '../utils/general/gameHelpers'
 import {decideIfGameIsPlaying} from '../utils/general/general'
 import '../App.css'
@@ -33,6 +35,9 @@ export class Choice extends Component{
 
   componentWillUnmount(){
     clearInterval(this.interval)
+    const updatedState = applyEffectsToStatus(this.props.state.event, this.props.state)
+    updatedState.event = []
+    this.props.updateAll(updatedState)
   }
 
   /**
@@ -51,9 +56,12 @@ export class Choice extends Component{
 
   updateGameStatus(){
     //determines if status effects should be applied or if game should be over
-    const {newState} = gameOver(this.props.state)
+    let {newState} = gameOver(this.props.state);
+    const statusEvents = addStatusEffects(newState.status);
+    const event = (statusEvents.length>0)? statusEvents.map(e=> calcEventEffects(e, newState)): [];
     const updatedNotification = decideIfGameIsPlaying(newState.status)
-    const updatedState = Object.assign({}, newState, updatedNotification)
+    newState = Object.assign({}, newState, event)
+    const updatedState = Object.assign({}, newState, updatedNotification, {event})
     //updates the redux state to reflect changes
     this.props.updateAll(updatedState)
 
@@ -67,7 +75,9 @@ export class Choice extends Component{
   selectHome(home){
     this.props.setHome(home)
     this.props.recordHome(home.description[0])
-    this.props.changePage('gameplay')
+    setTimeout(()=>{
+      this.props.changePage('gameplay')
+    }, 0)
   }
 
   render(){

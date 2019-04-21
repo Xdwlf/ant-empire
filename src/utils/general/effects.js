@@ -13,7 +13,7 @@ export const statusEffects = {
     number: 0.8
   }, {
     type: "ant",
-    subtype: "egg",
+    subtype: "eggs",
     number: 0.2
   }],
   DEHYDRATED: [{
@@ -30,7 +30,7 @@ export const statusEffects = {
     number: 0.8
   }, {
     type: "ant",
-    subtype: "egg",
+    subtype: "eggs",
     number: 0.2
   }]
   
