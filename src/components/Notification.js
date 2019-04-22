@@ -25,14 +25,15 @@ class Notification extends Component{
     /* If view stats has not been clicked, show the narrative. Otherwise, display the stats.
      */
     let content = (!this.state.stats)? (<div>
-        {this.props.notification}
+          <h1>GAME OVER</h1>
+        <div id="game-over-narrative">{this.props.notification}</div>
         <div className="button-group">
           <button onClick={this.props.resetGame}>Play Again</button>
           <button onClick={this.viewStats}>View Stats</button>
         </div>
         </div>): <div>
+          <h4>Stats</h4>
           <table>
-            <h4>Stats</h4>
             <tbody>
               <tr><td>Days Lived:</td><td>{stats.day}</td></tr>
               <tr><td>Max Ants:</td><td>{stats.maxAnts}</td></tr>
@@ -45,11 +46,11 @@ class Notification extends Component{
                   </td>
               </tr>
             </tbody>
-            <div className="button-group">
+          </table>
+          <div className="button-group">
               <button onClick={this.props.resetGame}>Play Again</button>
               <button onClick={this.viewNarrative}>Go Back</button>
-            </div>
-          </table>
+          </div>
 
         </div> ;
     return (<div id="notification">

@@ -6,7 +6,6 @@ import {gStatus} from '../../utils/general/status'
 import {findByTestAttr} from '../../test/testUtils'
 
 const defaultReduxState={
-
     ants: {
       eggs:0,
       larvae:0,
@@ -25,8 +24,12 @@ const defaultReduxState={
     status: [gStatus.HEALTHY]
 }
 
+const defaultProps = {
+  updateMaxAnts : () => {}
+}
+
 const setup = (props) => {
-  const newProps= Object.assign({}, {state: defaultReduxState}, props)
+  const newProps= Object.assign({}, {state: defaultReduxState}, defaultProps, props)
   return shallow(<Choice {...newProps} updateAll={()=>null} />)
 }
 

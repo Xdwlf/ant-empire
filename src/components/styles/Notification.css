@@ -2,10 +2,8 @@
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  border: black;
   z-index: 2;
   position: absolute;
-  border: 2px solid teal;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
@@ -13,11 +11,50 @@
   min-width: 400px;
   min-height: 400px;
   max-width: 800px;
-  background-color: rgba(100, 0, 0);
-  border-radius: 5px;
+  background-color: rgba(60, 60, 60, 1);
+  box-shadow: 0px 2px 0px 12px rgba(32,32,32,0.89),
+                0px 2px 6px 17px rgba(0,0,0,0.89);
 }
 
 #notification button{
   height: 50px;
   border-radius: 10px;
+}
+
+#notification h1{
+  color: rgba(255,0,0, 0.8);
+  letter-spacing: 4px;
+  text-shadow: 1px 1px 8px rgba(0,0,0);
+  font-size: 2.5rem;
+}
+
+#notification h4{
+  letter-spacing: 4px;
+  text-shadow: 1px 1px 8px rgba(0,0,0);
+  font-size: 2rem;
+  margin-bottom: 5%;
+}
+
+#notification #game-over-narrative{
+  margin: 50px auto;
+
+}
+
+#notification .button-group{
+  margin-top: 3rem;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+#notification .button-group button{
+  min-width: 160px;
+  width: 30%;
+  cursor: pointer;
+  outline: none;
+  transition: 0.3s all linear;
+  border: none;
+}
+
+#notification .button-group button:hover{
+  background-color: rgba(200,200,200,0.8)
 }

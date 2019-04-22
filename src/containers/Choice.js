@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux'
 import generateHome from '../utils/home'
 import {setHome, updateGameStatus, updateAll, recordHome, updateMaxAnts} from '../actionCreators'
-import {compileEffects, applyEffectsToStatus, calcEventEffects} from '../utils/effect';
+import {applyEffectsToStatus, calcEventEffects} from '../utils/effect';
 import {addStatusEffects} from '../utils/general/statusHelpers'
 import {gameOver} from '../utils/general/gameHelpers'
 import {decideIfGameIsPlaying} from '../utils/general/general'
@@ -75,6 +75,7 @@ export class Choice extends Component{
   selectHome(home){
     this.props.setHome(home)
     this.props.recordHome(home.description[0])
+    //ensure that the home is set before component is unmounted
     setTimeout(()=>{
       this.props.changePage('gameplay')
     }, 0)

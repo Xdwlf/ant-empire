@@ -55,9 +55,10 @@ export class App extends Component {
   /**
    * Resets the game by reseting state and changing the page to render the Enter Component
    */
-
   resetGame(){
-    this.props.resetState()
+    setTimeout(()=>{
+      this.props.resetState()
+    }, 0)
     this.setState({page:'enter'})
   }
 
