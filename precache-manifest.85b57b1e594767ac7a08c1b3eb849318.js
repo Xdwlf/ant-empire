@@ -4,7 +4,7 @@ self.__precacheManifest = [
     "url": "/ant-empire/static/js/runtime~main.8a5f3164.js"
   },
   {
-    "revision": "f3ee7def7dcea130c118",
+    "revision": "1b34e6a31abc9710d5bf",
     "url": "/ant-empire/static/js/main.62c32ac0.chunk.js"
   },
   {
@@ -12,11 +12,11 @@ self.__precacheManifest = [
     "url": "/ant-empire/static/js/2.5199946f.chunk.js"
   },
   {
-    "revision": "f3ee7def7dcea130c118",
-    "url": "/ant-empire/static/css/main.ebdd66aa.chunk.css"
+    "revision": "1b34e6a31abc9710d5bf",
+    "url": "/ant-empire/static/css/main.4476e9b4.chunk.css"
   },
   {
-    "revision": "81387427b3e879c8d0b46a6f8e30cf81",
+    "revision": "be8848ba6da86c363edfafbfbd8d3ebf",
     "url": "/ant-empire/index.html"
   }
 ];

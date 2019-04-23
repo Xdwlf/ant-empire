@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/ant-empire/precache-manifest.59c3ea144c5b1a4aa4ea099dd4c5d2b1.js"
+  "/ant-empire/precache-manifest.85b57b1e594767ac7a08c1b3eb849318.js"
 );
 
 workbox.clientsClaim();
