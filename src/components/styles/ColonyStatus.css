@@ -67,7 +67,7 @@
 
 }
 
-@media only screen and (max-width: 1290px) {
+@media only screen and (max-width: 600px) {
   .sidebar{
     padding: 0;
   }
@@ -83,7 +83,7 @@
   }
 }
 
-@media only screen and (max-width: 1150px) {
+@media only screen and (max-width: 500px) {
   .sidebar .status-section:nth-child(1) {
     flex-direction: column;
   }

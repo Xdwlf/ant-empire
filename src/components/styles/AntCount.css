@@ -6,16 +6,13 @@
   min-width: 120px;
 }
 
-#ant-count table{
-  width: 100%
-}
-
 #ant-count table td{
   display: inline-block;
   width: 50px;
   justify-content: center;
   align-items: center;
 }
+
 #ant-count table th{
   text-align: right
 }
