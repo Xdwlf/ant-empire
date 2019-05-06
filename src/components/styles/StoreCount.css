@@ -3,7 +3,7 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  min-width: 120px;
+  min-width: 160px;
 }
 
 #store-count table td{
@@ -26,6 +26,11 @@
 }
 
 
+#store-count table th,td{
+  padding: 0;
+  margin: 0;
+  line-height: 100%;
+}
 
 
 @keyframes pulse {

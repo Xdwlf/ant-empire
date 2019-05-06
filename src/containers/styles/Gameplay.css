@@ -59,6 +59,12 @@
 
 @media only screen and (max-width: 768px) {
   #gameplay #choices{
-    margin: 0;
+    margin: 5vh 0;
   }
+  #gameplay #choices{
+    flex-direction: column;
+    align-items: center;
+
+  }
+
 }

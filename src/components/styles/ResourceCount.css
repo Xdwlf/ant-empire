@@ -1,5 +1,7 @@
-#resource-count{
-
+#resource-count table th,td{
+  padding: 0;
+  margin: 0;
+  line-height: 100%;
 }
 
 #resource-count .increasing{
@@ -8,3 +10,4 @@
 #resource-count .decreasing{
   color: red;
 }
+
